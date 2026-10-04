@@ -20,6 +20,7 @@
 - Clicking any song's mora link (`onClick`, or `onAuxClick` with the middle button) marks every non-local track in that album group, because the link lands on the album page. Groups also have manual "Mark purchased" (✓) and "Undo" (↺) icon buttons in a strip along the card's right edge.
 - The hook uses `useSyncExternalStore` with an in-module listener set plus the `storage` event, so marks sync across tabs.
 - `components/PurchasedPanel.tsx` lists the purchased songs by album (`purchasedGroups`), most recently marked album first so a misclick is at the top. Each song, and each album with more than one song, can be unmarked there.
+- The action bar's "Unmark all" clears the panel's marks and offers Undo until anything is marked again. Undo restores the original mark times, so the panel order and the re-added check come back unchanged.
 
 **Removal (`pages/PlaylistPage.tsx`, `components/RemoveDialog.tsx`)**
 - Enabled only when `ownerId === me.id || collaborative`.

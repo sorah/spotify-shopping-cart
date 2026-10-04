@@ -4,7 +4,9 @@ import {
 	isPurchased,
 	markPurchased,
 	parsePurchased,
+	pickPurchased,
 	purchasedGroups,
+	restorePurchased,
 	unmarkPurchased,
 } from "../../src/client/lib/purchasedStore.ts";
 import type { PlaylistTrack } from "../../src/shared/types.ts";
@@ -44,6 +46,18 @@ describe("purchasedStore", () => {
 		expect(unmarkPurchased(marked, ["a", "missing"])).toEqual({
 			x: "2026-01-01T00:00:00.000Z",
 			b: "2026-10-05T00:00:00.000Z",
+		});
+	});
+
+	test("restores picked marks with their original times, keeping newer marks", () => {
+		const map = { a: "2026-10-01T00:00:00.000Z", b: "2026-10-02T00:00:00.000Z", x: "2026-01-01T00:00:00.000Z" };
+		const picked = pickPurchased(map, ["a", "b", "missing"]);
+		expect(picked).toEqual({ a: "2026-10-01T00:00:00.000Z", b: "2026-10-02T00:00:00.000Z" });
+		const remarked = markPurchased(unmarkPurchased(map, ["a", "b"]), ["b"], new Date("2026-10-05T00:00:00Z"));
+		expect(restorePurchased(remarked, picked)).toEqual({
+			a: "2026-10-01T00:00:00.000Z",
+			b: "2026-10-05T00:00:00.000Z",
+			x: "2026-01-01T00:00:00.000Z",
 		});
 	});
 

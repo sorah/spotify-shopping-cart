@@ -1,6 +1,8 @@
-import { unmarkTracksPurchased } from "../hooks/usePurchased.ts";
+import { useState } from "react";
+import { restoreTracksPurchased, unmarkTracksPurchased } from "../hooks/usePurchased.ts";
 import { joinArtists, pluralize } from "../lib/format.ts";
 import type { AlbumGroup } from "../lib/grouping.ts";
+import type { PurchasedMap } from "../lib/purchasedStore.ts";
 
 type Props = {
 	groups: AlbumGroup[];
@@ -9,7 +11,11 @@ type Props = {
 };
 
 export function PurchasedPanel({ groups, canEdit, onRemove }: Props) {
-	const count = groups.reduce((sum, group) => sum + group.tracks.length, 0);
+	const uris = groups.flatMap((group) => group.tracks.map((track) => track.uri));
+	const count = uris.length;
+	const [unmarked, setUnmarked] = useState<PurchasedMap>();
+	// Undo is offered only until something is marked again.
+	if (unmarked && count > 0) setUnmarked(undefined);
 
 	return (
 		<aside className="purchased" aria-labelledby="purchased-title">
@@ -75,21 +81,48 @@ export function PurchasedPanel({ groups, canEdit, onRemove }: Props) {
 					</ol>
 				)}
 			</div>
-			{count > 0 && (
+			{count > 0 ? (
 				<div className="action-bar">
 					<p>
 						<strong>{pluralize(count, "song")}</strong> marked as purchased
 					</p>
-					<button
-						type="button"
-						className="button button-danger"
-						disabled={!canEdit}
-						title={canEdit ? undefined : "Only playlists you own or collaborate on can be edited"}
-						onClick={onRemove}
-					>
-						Remove from playlist
-					</button>
+					<div className="action-bar-buttons">
+						<button
+							type="button"
+							className="button button-quiet"
+							onClick={() => setUnmarked(unmarkTracksPurchased(uris))}
+						>
+							Unmark all
+						</button>
+						<button
+							type="button"
+							className="button button-danger"
+							disabled={!canEdit}
+							title={canEdit ? undefined : "Only playlists you own or collaborate on can be edited"}
+							onClick={onRemove}
+						>
+							Remove from playlist
+						</button>
+					</div>
 				</div>
+			) : (
+				unmarked && (
+					<div className="action-bar">
+						<p>
+							Unmarked <strong>{pluralize(Object.keys(unmarked).length, "song")}</strong>
+						</p>
+						<button
+							type="button"
+							className="button button-quiet"
+							onClick={() => {
+								restoreTracksPurchased(unmarked);
+								setUnmarked(undefined);
+							}}
+						>
+							Undo
+						</button>
+					</div>
+				)
 			)}
 		</aside>
 	);

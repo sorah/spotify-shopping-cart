@@ -27,6 +27,15 @@ export function unmarkPurchased(map: PurchasedMap, uris: string[]): PurchasedMap
 	return Object.fromEntries(Object.entries(map).filter(([uri]) => !removed.has(uri)));
 }
 
+export function pickPurchased(map: PurchasedMap, uris: string[]): PurchasedMap {
+	return Object.fromEntries(uris.flatMap((uri) => (map[uri] === undefined ? [] : [[uri, map[uri]]])));
+}
+
+// Marks made after the snapshot was taken win over the restored ones.
+export function restorePurchased(map: PurchasedMap, snapshot: PurchasedMap): PurchasedMap {
+	return { ...snapshot, ...map };
+}
+
 // A track re-added to the playlist after it was marked counts as not purchased again.
 export function isPurchased(map: PurchasedMap, track: PlaylistTrack): boolean {
 	const at = map[track.uri];
