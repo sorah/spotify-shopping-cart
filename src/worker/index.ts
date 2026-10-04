@@ -5,6 +5,7 @@ import type { ApiError } from "../shared/types.ts";
 import { api, ForbiddenError } from "./api.ts";
 import { auth } from "./auth.ts";
 import type { AppEnv } from "./env.ts";
+import { mora } from "./mora/routes.ts";
 import { SpotifyApiError } from "./spotify.ts";
 import { SpotifyTokenError } from "./spotifyAccounts.ts";
 
@@ -18,9 +19,11 @@ const app = new Hono<AppEnv>();
 app.use(secureHeaders());
 app.use("/api/*", noStore);
 app.use("/auth/*", noStore);
+app.use("/mora/*", noStore);
 
 app.route("/auth", auth);
 app.route("/api", api);
+app.route("/mora", mora);
 
 app.notFound((c) => c.json<ApiError>({ code: "not_found" }, 404));
 
