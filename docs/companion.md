@@ -1,6 +1,6 @@
 # Local library companion
 
-> **Status:** the SPA and Worker side is in this repository and has run only against a mock companion. The companion (Rust) is built and verified on the music PC, but isn't in this repository yet. The SPA and Worker are developed on another machine.
+> **Status:** the companion (Rust) is in [`companion/`](../companion/README.md) and verified on the music PC. The SPA has run only against a mock companion so far, because the SPA and Worker are developed on another machine.
 
 ## Goal
 
@@ -42,6 +42,8 @@ Companion  http://127.0.0.1:47611   (Rust, companion/, on the music PC)
 - The SPA can't authenticate the companion. While it isn't running, another local process listening on 127.0.0.1:47611 would receive the token.
 
 ## Running
+
+Setup, configuration options and development commands are in [companion/README.md](../companion/README.md).
 
 - `ssc-companion serve` starts the server (`companion\target\release\ssc-companion.exe` on the music PC); `ssc-companion token` prints the pairing token.
 - `ssc-companion token --rotate` replaces the token; a running `serve` keeps the old one until restarted.

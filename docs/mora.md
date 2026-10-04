@@ -57,6 +57,7 @@
 | `keywordTitle` | the same segments as `baseKey`, but keeping the original text | mora search keywords |
 
 - Mix, remix, live and version qualifiers are deliberately kept, because they are different recordings.
+- The local library companion's `companion/src/normalize.rs` ports this module. Regenerate its parity fixtures after changing it (see [companion/README.md](../companion/README.md#development)).
 
 **2. Similarity**
 - `dice` is the character-bigram Dice coefficient, computed with whitespace removed.

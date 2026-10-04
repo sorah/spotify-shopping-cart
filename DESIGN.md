@@ -34,6 +34,7 @@ A single Worker serves both the SPA assets and the dynamic routes. There is no d
 | `public/_headers` | CSP and security headers for static assets (production only) |
 | `test/` | `bun test` suites, helpers, and recorded mora fixtures |
 | `tmp/` | Git-ignored scratch space; may hold debug exports of real data (`spotify-shopping-cart-debug-*.json`, see [client](docs/client.md)) |
+| `companion/` | Local library companion (Rust): indexes the iTunes library and folder sources on the music PC and answers protocol v1 on 127.0.0.1:47611 (see [companion](docs/companion.md) and [companion/README.md](companion/README.md)) |
 | `tsconfig.{base,worker,client,test}.json` | Split type-check programs (see [toolchain](docs/toolchain.md#type-check-programs)); `tsconfig.json` is a solution-style root |
 
 ## Documents
@@ -47,14 +48,15 @@ Read the ones that cover the area you are working on.
 | [docs/spotify.md](docs/spotify.md) | Spotify Web API facts: Development Mode limits, endpoints, tokens, normalization | calling Spotify or changing how playlist items are fetched or removed |
 | [docs/mora.md](docs/mora.md) | mora search API facts, the `/mora/redirect` request and the matching algorithm | changing mora search, matching thresholds or the redirector |
 | [docs/client.md](docs/client.md) | SPA routing and data fetching, grouping, purchased marks, removal, styling, CSP | changing anything under `src/client/` or `public/_headers` |
-| [docs/companion.md](docs/companion.md) | The local library companion: protocol v1, what the local libraries look like, matching rules, and the SPA's check and review flow | changing the companion client, `PlaylistTrack` fields it sends, or the CSP's `connect-src` |
+| [docs/companion.md](docs/companion.md) | The local library companion: protocol v1, what the local libraries look like, matching rules, and the SPA's check and review flow | changing `companion/`, the companion client, `PlaylistTrack` fields it sends, or the CSP's `connect-src` |
 | [docs/testing.md](docs/testing.md) | Test layout, helpers, recorded mora fixtures, manual UI checks | writing tests or re-recording fixtures |
 | [docs/limitations.md](docs/limitations.md) | Unverified behaviour, known limitations, possible next steps | planning new work or debugging against real Spotify/mora |
 
 ## Conventions
 
 - Commits follow sorah-guides commit style: a short lowercase-imperative or `component:` subject, and a body explaining why. Each commit is self-contained and passes all checks.
-- Before each commit, run `bun test && bun run typecheck && bun run build`.
+- Before each commit, run `bun test && bun run typecheck && bun run build`. For changes under `companion/`, also run `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` there.
+- `companion/src/normalize.rs` ports `src/worker/mora/normalize.ts`. After changing the TypeScript side, regenerate the parity fixtures with `bun companion/scripts/gen-normalize-fixtures.ts` and port the change.
 - TypeScript:
   - Prefer `type` over `interface`.
   - Use discriminated unions such as `MoraResolution` and `ParsedPlaylist`.
