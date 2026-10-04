@@ -1,0 +1,39 @@
+# Client (`src/client/`)
+
+**Routing and data**
+- **Routes** (react-router, declarative): `/` (login or playlist URL form) and `/playlists/:id`.
+- **SWR**
+  - The fetcher is `fetchJson`.
+  - `revalidateOnFocus` is off, because the user returns from mora tabs constantly and refetching would waste Spotify quota.
+  - Retries happen only on network errors or 5xx.
+- **Request order:** `useMe()` must resolve before the playlist and items keys are enabled, to avoid the refresh-token race described under Token refresh in [worker.md](worker.md).
+- **Items:** fetched under the key `["playlist-items", id]` by `fetchAllPlaylistItems`, which loops pages sequentially.
+
+**Grouping (`lib/grouping.ts`)**
+- Tracks are grouped by `album.id`, or `local:<album name>` for local files.
+- Songs inside a group are ordered by `addedAt` descending; tracks added at the same time keep playlist order; a null `addedAt` sorts last.
+- Groups are ordered by their newest track.
+
+**Purchased marks (`lib/purchasedStore.ts`, `hooks/usePurchased.ts`)**
+- Stored in localStorage under `spotify-shopping-cart:purchased` as `Record<trackUri, ISO time marked>`.
+- A track counts as purchased only if `markedAt >= addedAt`, so a song re-added to the cart later shows up as unpurchased.
+- Clicking any song's mora link (`onClick`, or `onAuxClick` with the middle button) marks every non-local track in that album group, because the link lands on the album page. Groups also have manual "Mark purchased" and "Undo" buttons.
+- The hook uses `useSyncExternalStore` with an in-module listener set plus the `storage` event, so marks sync across tabs.
+- `components/PurchasedPanel.tsx` lists the purchased songs by album (`purchasedGroups`), most recently marked album first so a misclick is at the top. Each song, and each album with more than one song, can be unmarked there.
+
+**Removal (`pages/PlaylistPage.tsx`, `components/RemoveDialog.tsx`)**
+- Enabled only when `ownerId === me.id || collaborative`.
+- Confirmed in a `<dialog>`, then posted in batches of 500.
+- Each successful batch's marks are cleared immediately, so a partial failure leaves only the unremoved songs marked.
+- The items cache is then pruned optimistically and revalidated.
+
+**Styling**
+- One plain stylesheet, `style.css`, light theme only. Don't add dark mode.
+- Modern CSS is fine, including Baseline features of limited availability: nesting, `color-mix()`, `:has()`, `<dialog>`, range media queries.
+- Pages use a column of at most 880px (`--content-width`). The playlist page widens it to 1200px and, from 960px up, shows the album list beside a sticky purchased panel. Everything must work at phone width.
+- Below 960px the panel's `<aside>` is `display: contents`, so its action bar sticks to the viewport bottom across the whole album list.
+
+**CSP**
+- `public/_headers` sets a CSP for asset responses: `script-src 'self'`, `style-src 'self'`, images from `*.scdn.co` and `*.spotifycdn.com`.
+- `cf deploy` uploads it with the build. The Vite dev server ignores it, so it never breaks HMR.
+- Avoid inline `style` attributes and inline scripts. Add any new image or CDN host to the CSP.
