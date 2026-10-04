@@ -18,7 +18,7 @@ The shopping-cart playlist accumulates songs the user already owns locally. The 
 ## Topology
 
 ```
-Browser (SPA)  https://spotify-shopping-cart.nkmi.me
+Browser (SPA)  https://spotify-shopping-cart.nkmi.org
                https://spotify-shopping-cart.lo.nkmiusercontent.com:1443 (dev)
   │  fetch, CORS, Authorization: Bearer <pairing token>
   ▼
@@ -60,7 +60,7 @@ Setup, configuration options and development commands are in [companion/README.m
 {
 	"listen": "127.0.0.1:47611",
 	"allowedOrigins": [
-		"https://spotify-shopping-cart.nkmi.me",
+		"https://spotify-shopping-cart.nkmi.org",
 		"https://spotify-shopping-cart.lo.nkmiusercontent.com:1443"
 	],
 	"sources": [

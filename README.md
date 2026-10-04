@@ -24,7 +24,7 @@ Tech stack: Bun, Cloudflare, TypeScript, Hono, React
 Create an app in the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) with the Web API enabled, and register these redirect URIs:
 
 - `https://spotify-shopping-cart.<your trustless domain>:1443/auth/callback` for local development
-- `https://spotify-shopping-cart.nkmi.me/auth/callback` for production
+- `https://spotify-shopping-cart.nkmi.org/auth/callback` for production
 
 Development Mode apps only work for users added under **User Management** (up to 5), and can only read and edit playlists the user owns or collaborates on.
 
@@ -54,4 +54,4 @@ bun run deploy --secrets-file .env.production
 
 The secrets file is required on the first deploy; later deploys keep existing secrets unless a file is passed again.
 
-The Worker is published to the custom domain listed under `domains` in `cloudflare.config.ts`, `spotify-shopping-cart.nkmi.me`, whose zone must be in the deploying Cloudflare account.
+The Worker is published to the custom domain listed under `domains` in `cloudflare.config.ts`, `spotify-shopping-cart.nkmi.org`, whose zone must be in the deploying Cloudflare account.
