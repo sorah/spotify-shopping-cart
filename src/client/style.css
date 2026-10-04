@@ -14,6 +14,7 @@
 	--shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 16px rgb(0 0 0 / 0.04);
 	--font: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", sans-serif;
 	--content-width: 880px;
+	--footer-height: 48px;
 
 	color-scheme: light;
 }
@@ -111,6 +112,29 @@ p {
 	max-width: var(--content-width);
 	margin: 0 auto;
 	padding: 32px 16px 96px;
+}
+
+.site-footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: var(--footer-height);
+	padding: 0 16px;
+}
+
+.footer-link {
+	padding: 0;
+	border: none;
+	background: none;
+	color: var(--color-muted);
+	font: inherit;
+	font-size: 12px;
+	cursor: pointer;
+
+	&:hover {
+		color: var(--color-text);
+		text-decoration: underline;
+	}
 }
 
 .button {
@@ -612,9 +636,9 @@ p {
 }
 
 @media (width >= 960px) {
-	/* Matches the panel's bottom gap so the end of the page doesn't push the panel under the site header. */
+	/* The footer is the panel's bottom gap, so the end of the page doesn't push the panel under the site header. */
 	.site-main:has(.playlist-body) {
-		padding-bottom: 32px;
+		padding-bottom: 0;
 	}
 
 	.playlist-body {
@@ -629,7 +653,7 @@ p {
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
-		max-height: calc(100dvh - 72px - 32px);
+		max-height: calc(100dvh - 72px - var(--footer-height));
 	}
 
 	.purchased .action-bar {

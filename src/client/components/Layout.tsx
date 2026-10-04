@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router";
 import { useMe } from "../hooks/useMe.ts";
+import { DebugExportButton } from "./DebugExportButton.tsx";
 
 export function Layout({ children }: { children: ReactNode }) {
 	const { data: me } = useMe();
@@ -23,6 +24,9 @@ export function Layout({ children }: { children: ReactNode }) {
 				)}
 			</header>
 			<main className="site-main">{children}</main>
+			<footer className="site-footer">
+				<DebugExportButton />
+			</footer>
 		</>
 	);
 }

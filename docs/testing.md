@@ -11,5 +11,7 @@
   - `cases.ts` lists the Spotify-side queries.
   - `record.ts` runs the matcher against live mora and rewrites the fixtures: `bun test/fixtures/mora/record.ts`.
   - Re-record whenever the matcher's queries change. Replay fails with a clear message naming any missing key.
-- **Client:** only the pure modules are unit-tested (grouping, URL parsing, mora links, the purchased store). Components have no tests.
+- **Client:** only the pure modules are unit-tested (grouping, URL parsing, mora links, the purchased store, the debug export). Components have no tests.
 - **UI checks:** done manually with `playwright-cli` against the dev server, using `page.route` mocks for `/api/*` (and `context.route` for `/mora/redirect`, which opens in a new tab).
+  - A debug export from the real app (see [client.md](client.md)) gives realistic `/api/*` bodies and purchased marks to mock with. Its items entry is the concatenation of all pages, so serve it as one `{ items, nextOffset: null, total }` page.
+  - The user may have dropped exports into `tmp/spotify-shopping-cart-debug-*.json`. Look there before writing mock data by hand.

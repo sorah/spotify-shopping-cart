@@ -1,8 +1,10 @@
 # Unverified items and known limitations
 
+Debug exports of the real app (see [client.md](client.md)) may be in `tmp/spotify-shopping-cart-debug-*.json`. Check them before assuming how real data looks.
+
 **Not yet exercised with real Spotify credentials**
-- The end-to-end OAuth flow.
-- Whether `Accept-Language: ja` localizes names.
+- Whether `Accept-Language: ja` localizes names. Japanese releases come back with Japanese names, but that may be their original metadata.
+- Playlists containing local files or items without `added_at`.
 - Whether `DELETE /playlists/{id}/items` works for Development Mode apps. Community reports mention 403s, but those were on the removed endpoints.
 - Writing playlist descriptions: whether the Web API enforces the 300-character limit (and counts characters or escaped bytes), and whether the set of escaped entities is complete.
 - Whether mora answers requests from Cloudflare's egress IPs. Check with `/mora/redirect?...&debug=1` after deploying.
@@ -14,7 +16,8 @@
 **Other limitations**
 - The Cache API has no effect on `workers.dev`, so mora responses aren't cached.
 - Local files can't be removed through the API.
-- Removing by URI always deletes every duplicate of a track.
+- Removing by URI always deletes every duplicate of a track, while the purchased count includes the track once.
+- A re-release under a new album ID forms its own group, so opening one on mora doesn't mark the other.
 - Collaborators can remove songs but can't change the description, so their shopping isn't recorded.
 - Editing the description in a Spotify client at the same moment as a shopping can be overwritten, since there's no compare-and-set for playlist details.
 

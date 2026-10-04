@@ -29,11 +29,18 @@
 - If any song was removed and the user owns the playlist, the client records the shopping with `PUT /api/playlists/:id/last-shopping` and puts the response into the playlist cache without revalidating. A failure there is only logged, because the songs are already gone.
 - The playlist header shows the last shopping date and song count.
 
+**Debug export (`lib/debugExport.ts`, `components/DebugExportButton.tsx`)**
+- The site footer's "Export debug data" button downloads a JSON file with every localStorage entry (JSON values parsed) and every SWR cache entry's `data` and `error`, plus the page URL and user agent.
+- SWR cache entries are keyed by SWR's serialized key: `/api/me`, `/api/playlists/<id>`, and `@"playlist-items","<id>",` for the concatenated items pages.
+- `Error` objects are exported with `name`, `message` and their own fields such as `status` and `code`.
+- The session cookie is never read, so tokens never end up in the file.
+
 **Styling**
 - One plain stylesheet, `style.css`, light theme only. Don't add dark mode.
 - Modern CSS is fine, including Baseline features of limited availability: nesting, `color-mix()`, `:has()`, `<dialog>`, range media queries.
 - Pages use a column of at most 880px (`--content-width`). The playlist page widens it to 1200px and, from 960px up, shows the album list beside a sticky purchased panel. Everything must work at phone width.
 - Below 960px the panel's `<aside>` is `display: contents`, so its action bar sticks to the viewport bottom across the whole album list.
+- From 960px up, the playlist page drops `.site-main`'s bottom padding and the panel's `max-height` leaves `--footer-height` below it, so at the end of the page the footer fills exactly the panel's bottom gap and the panel doesn't slide under the header.
 
 **CSP**
 - `public/_headers` sets a CSP for asset responses: `script-src 'self'`, `style-src 'self'`, images from `*.scdn.co` and `*.spotifycdn.com`.

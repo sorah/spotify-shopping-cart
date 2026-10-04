@@ -33,6 +33,7 @@ A single Worker serves both the SPA assets and the dynamic routes. There is no d
 | `src/shared/types.ts` | API contract between worker and client: request/response and error codes |
 | `public/_headers` | CSP and security headers for static assets (production only) |
 | `test/` | `bun test` suites, helpers, and recorded mora fixtures |
+| `tmp/` | Git-ignored scratch space; may hold debug exports of real data (`spotify-shopping-cart-debug-*.json`, see [client](docs/client.md)) |
 | `tsconfig.{base,worker,client,test}.json` | Split type-check programs (see [toolchain](docs/toolchain.md#type-check-programs)); `tsconfig.json` is a solution-style root |
 
 ## Documents
