@@ -4,17 +4,19 @@ import useSWR from "swr";
 import type {
 	GetPlaylistResponse,
 	PlaylistTrack,
+	PutLastShoppingRequest,
+	PutLastShoppingResponse,
 	RemovePlaylistItemsRequest,
 	RemovePlaylistItemsResponse,
 } from "../../shared/types.ts";
-import { ApiRequestError, fetchAllPlaylistItems, postJson } from "../api.ts";
+import { ApiRequestError, fetchAllPlaylistItems, postJson, putJson } from "../api.ts";
 import { AlbumGroupCard } from "../components/AlbumGroupCard.tsx";
 import { ApiErrorNotice } from "../components/ApiErrorNotice.tsx";
 import { PurchasedPanel } from "../components/PurchasedPanel.tsx";
 import { RemoveDialog } from "../components/RemoveDialog.tsx";
 import { useMe } from "../hooks/useMe.ts";
 import { unmarkTracksPurchased, usePurchased } from "../hooks/usePurchased.ts";
-import { pluralize } from "../lib/format.ts";
+import { formatDate, pluralize } from "../lib/format.ts";
 import { groupByAlbum } from "../lib/grouping.ts";
 import { purchasedGroups } from "../lib/purchasedStore.ts";
 
@@ -41,10 +43,21 @@ export default function PlaylistPage() {
 	const [isRequesting, setIsRequesting] = useState(false);
 	const [removeError, setRemoveError] = useState<string>();
 
-	const canEdit =
-		me !== undefined &&
-		playlist.data !== undefined &&
-		(playlist.data.ownerId === me.id || playlist.data.collaborative);
+	const isOwner = me !== undefined && playlist.data !== undefined && playlist.data.ownerId === me.id;
+	const canEdit = isOwner || playlist.data?.collaborative === true;
+
+	const recordLastShopping = async (songCount: number) => {
+		try {
+			const lastShopping = await putJson<PutLastShoppingResponse>(`/api/playlists/${id}/last-shopping`, {
+				songCount,
+				timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+			} satisfies PutLastShoppingRequest);
+			await playlist.mutate((current) => current && { ...current, lastShopping }, { revalidate: false });
+		} catch (error) {
+			// The songs are already removed, so a stale description isn't worth an error message.
+			console.error(error);
+		}
+	};
 
 	const removePurchased = async () => {
 		if (isRequesting) return;
@@ -71,7 +84,10 @@ export default function PlaylistPage() {
 		} finally {
 			setIsRequesting(false);
 			if (removed.size > 0) {
-				await items.mutate((current) => current?.filter((track) => !removed.has(track.uri)));
+				await Promise.all([
+					items.mutate((current) => current?.filter((track) => !removed.has(track.uri))),
+					isOwner && recordLastShopping(removed.size),
+				]);
 			}
 		}
 	};
@@ -97,6 +113,16 @@ export default function PlaylistPage() {
 								<>
 									{" "}
 									· {pluralize(items.data.length, "song")} · {pluralize(groups.length, "album")}
+								</>
+							)}
+							{playlist.data.lastShopping && (
+								<>
+									{" · "}
+									Last shopping{" "}
+									<time dateTime={playlist.data.lastShopping.at}>
+										{formatDate(playlist.data.lastShopping.at)}
+									</time>{" "}
+									({pluralize(playlist.data.lastShopping.songCount, "song")})
 								</>
 							)}
 							{" · "}

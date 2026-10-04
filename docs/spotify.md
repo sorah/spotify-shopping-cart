@@ -14,6 +14,10 @@ The code targets the API as it stands after the February 2026 changes for Develo
   - At most 100 URIs per call. The worker chunks and sends no `snapshot_id`.
   - Removing by URI deletes every occurrence of the track.
   - Local files can't be removed by URI, so the API accepts only `spotify:track:<22 chars>`, and the UI disables actions for local files.
+- **Playlist details.** `PUT /playlists/{id}` with `{description}` answers 200 with an empty body.
+  - Only the owner may change details, even on a collaborative playlist.
+  - Descriptions come back HTML-escaped (`&amp;`, `&quot;`, `&#x27;`, `&#x2F;`, …), so they are unescaped before being written back.
+  - Spotify clients cap descriptions at 300 characters.
 - **No `market` parameter, ever.** Track relinking would return URIs that can't be removed from the playlist.
 - **`Accept-Language: ja`** is sent so Japanese names come back in Japanese, which is what mora indexes. Whether Spotify honours it hasn't been verified.
 - **Tokens.**

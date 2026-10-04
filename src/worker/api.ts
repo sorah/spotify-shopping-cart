@@ -1,10 +1,19 @@
 import { Hono } from "hono";
 import { createMiddleware } from "hono/factory";
-import type { ApiError, RemovePlaylistItemsResponse } from "../shared/types.ts";
+import type { ApiError, LastShopping, PutLastShoppingResponse, RemovePlaylistItemsResponse } from "../shared/types.ts";
 import type { AppEnv } from "./env.ts";
+import { formatDescription, isValidTimeZone } from "./lastShopping.ts";
 import { sameOrigin } from "./sameOrigin.ts";
 import { requireSession } from "./session.ts";
-import { getMe, getPlaylist, getPlaylistItems, removePlaylistItems, SpotifyApiError } from "./spotify.ts";
+import {
+	getMe,
+	getPlaylist,
+	getPlaylistDescription,
+	getPlaylistItems,
+	removePlaylistItems,
+	SpotifyApiError,
+	updatePlaylistDescription,
+} from "./spotify.ts";
 
 const PLAYLIST_ID_RE = /^[A-Za-z0-9]{22}$/;
 const TRACK_URI_RE = /^spotify:track:[A-Za-z0-9]{22}$/;
@@ -78,4 +87,26 @@ api.post("/playlists/:id/remove", requireJson, async (c) => {
 		rethrowForbiddenAs("playlist_forbidden"),
 	);
 	return c.json<RemovePlaylistItemsResponse>({ snapshotId, removed: unique.length });
+});
+
+api.put("/playlists/:id/last-shopping", requireJson, async (c) => {
+	const body = (await c.req.json().catch(() => undefined)) as
+		| { songCount?: unknown; timeZone?: unknown }
+		| undefined;
+	const songCount = body?.songCount;
+	const timeZone = body?.timeZone;
+	if (typeof songCount !== "number" || !Number.isSafeInteger(songCount) || songCount < 1) {
+		return c.json<ApiError>({ code: "bad_request", message: "songCount must be a positive integer" }, 400);
+	}
+	if (typeof timeZone !== "string" || !isValidTimeZone(timeZone)) {
+		return c.json<ApiError>({ code: "bad_request", message: "timeZone must be an IANA time zone" }, 400);
+	}
+
+	const id = c.req.param("id");
+	const lastShopping: LastShopping = { at: new Date().toISOString(), songCount };
+	const current = await getPlaylistDescription(c, id).catch(rethrowForbiddenAs("playlist_forbidden"));
+	await updatePlaylistDescription(c, id, formatDescription(current, lastShopping, timeZone)).catch(
+		rethrowForbiddenAs("playlist_forbidden"),
+	);
+	return c.json<PutLastShoppingResponse>(lastShopping);
 });

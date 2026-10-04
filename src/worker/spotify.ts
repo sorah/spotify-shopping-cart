@@ -1,6 +1,7 @@
 import type { Context } from "hono";
 import type { GetMeResponse, GetPlaylistItemsResponse, GetPlaylistResponse, PlaylistTrack } from "../shared/types.ts";
 import type { AppEnv } from "./env.ts";
+import { parseLastShopping } from "./lastShopping.ts";
 import { refreshSession } from "./session.ts";
 
 const API_BASE = "https://api.spotify.com/v1";
@@ -51,6 +52,7 @@ export type SpotifyItemsPage = {
 type SpotifyPlaylist = {
 	id: string;
 	name: string;
+	description: string | null;
 	owner: { id: string; display_name: string | null };
 	collaborative: boolean;
 	images: SpotifyImage[] | null;
@@ -65,7 +67,7 @@ type SpotifyUser = {
 const TRACK_FIELDS = "type,uri,name,is_local,artists(name),album(id,name,total_tracks,images,artists(name))";
 // Spotify is migrating from "track" to "item"; request both so the filter keeps whichever is present.
 const ITEMS_FIELDS = `next,total,items(added_at,is_local,item(${TRACK_FIELDS}),track(${TRACK_FIELDS}))`;
-const PLAYLIST_FIELDS = "id,name,owner(id,display_name),collaborative,images,external_urls";
+const PLAYLIST_FIELDS = "id,name,description,owner(id,display_name),collaborative,images,external_urls";
 
 export class SpotifyApiError extends Error {
 	constructor(
@@ -120,7 +122,25 @@ export async function getPlaylist(c: Context<AppEnv>, id: string): Promise<GetPl
 		collaborative: playlist.collaborative,
 		imageUrl: pickImage(playlist.images),
 		externalUrl: playlist.external_urls.spotify,
+		lastShopping: parseLastShopping(playlist.description),
 	};
+}
+
+export async function getPlaylistDescription(c: Context<AppEnv>, id: string): Promise<string | null> {
+	const playlist = await spotifyJson<Pick<SpotifyPlaylist, "description">>(
+		c,
+		`/playlists/${id}?${new URLSearchParams({ fields: "description" })}`,
+	);
+	return playlist.description;
+}
+
+// Spotify allows only the playlist owner to change its details, even on collaborative playlists.
+export async function updatePlaylistDescription(c: Context<AppEnv>, id: string, description: string): Promise<void> {
+	await spotifyFetch(c, `/playlists/${id}`, {
+		method: "PUT",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ description }),
+	});
 }
 
 // "market" is left out on purpose: relinked track URIs cannot be removed from the playlist.

@@ -4,6 +4,7 @@
 - The end-to-end OAuth flow.
 - Whether `Accept-Language: ja` localizes names.
 - Whether `DELETE /playlists/{id}/items` works for Development Mode apps. Community reports mention 403s, but those were on the removed endpoints.
+- Writing playlist descriptions: whether the Web API enforces the 300-character limit (and counts characters or escaped bytes), and whether the set of escaped entities is complete.
 - Whether mora answers requests from Cloudflare's egress IPs. Check with `/mora/redirect?...&debug=1` after deploying.
 
 **Matching limitations**
@@ -14,6 +15,8 @@
 - The Cache API has no effect on `workers.dev`, so mora responses aren't cached.
 - Local files can't be removed through the API.
 - Removing by URI always deletes every duplicate of a track.
+- Collaborators can remove songs but can't change the description, so their shopping isn't recorded.
+- Editing the description in a Spotify client at the same moment as a shopping can be overwritten, since there's no compare-and-set for playlist details.
 
 **Possible next steps**
 - A custom domain (`domains` in `cloudflare.config.ts`) together with response caching for mora.

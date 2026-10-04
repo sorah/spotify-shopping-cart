@@ -26,14 +26,22 @@ export async function fetchJson<T>(path: string): Promise<T> {
 	return parseResponse<T>(await fetch(path, { headers: { Accept: "application/json" } }));
 }
 
-export async function postJson<T>(path: string, body: unknown): Promise<T> {
+async function sendJson<T>(method: "POST" | "PUT", path: string, body: unknown): Promise<T> {
 	return parseResponse<T>(
 		await fetch(path, {
-			method: "POST",
+			method,
 			headers: { Accept: "application/json", "Content-Type": "application/json" },
 			body: JSON.stringify(body),
 		}),
 	);
+}
+
+export function postJson<T>(path: string, body: unknown): Promise<T> {
+	return sendJson<T>("POST", path, body);
+}
+
+export function putJson<T>(path: string, body: unknown): Promise<T> {
+	return sendJson<T>("PUT", path, body);
 }
 
 // Pages are fetched one request at a time so each stays within the worker's subrequest budget.

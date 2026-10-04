@@ -8,9 +8,10 @@
 | `GET /auth/callback` | state cookie | Exchange the code and set the session cookie; redirect (302) to `return_to`, or to `/?auth_error=<code>` on failure |
 | `POST /auth/logout` | same-origin | Clear the session; 303 to `/` |
 | `GET /api/me` | session | `{id, displayName}` |
-| `GET /api/playlists/:id` | session | Playlist metadata |
+| `GET /api/playlists/:id` | session | Playlist metadata, including the last shopping record parsed from the description |
 | `GET /api/playlists/:id/items?offset=` | session | One normalized page of 50 items, plus `nextOffset` |
 | `POST /api/playlists/:id/remove` | session, same-origin, JSON | `{uris}`, at most 500 per request; removes them from the playlist |
+| `PUT /api/playlists/:id/last-shopping` | session, same-origin, JSON | `{songCount, timeZone}`; records a shopping in the description and returns `{at, songCount}` |
 | `GET /mora/redirect?...` | session cookie | mora redirector (see [mora.md](mora.md)) |
 
 Middleware applied to these routes:
@@ -49,3 +50,16 @@ The Spotify Web API facts the `/api` routes depend on are in [spotify.md](spotif
 - Unsafe methods require `Sec-Fetch-Site: same-origin`. When that header is absent, `Origin` must match the request origin.
 - `/api` POSTs also require `Content-Type: application/json` (415 otherwise).
 - `hono/csrf` isn't used because it only inspects form-like content types.
+
+## Last shopping record (`lastShopping.ts`)
+
+After songs are removed, the playlist description records when and how many. It is the only state the app keeps on Spotify.
+
+```
+<owner's text> Last shopping: 2026-10-05 (12 songs) [ssc:eyJ2IjoxLCJhdCI6…]
+```
+
+- The summary is for people browsing in Spotify clients. Its date is formatted in the browser's time zone, which the client sends as `timeZone`.
+- The token is unpadded base64url of `{"v":1,"at":"<ISO time>","songCount":12}`, and is what the app reads back. The last token in the description wins; a malformed one or an unknown `v` reads as no record.
+- Writing reads the current description first, unescapes HTML entities, strips any previous summary and token, and appends the new ones. The owner's text is truncated with `…` when the whole description would exceed 300 characters.
+- `at` is set by the worker, not the client.

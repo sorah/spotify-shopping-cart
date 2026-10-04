@@ -18,6 +18,7 @@ A single Worker serves both the SPA assets and the dynamic routes. There is no d
 
 - Spotify tokens live in an encrypted cookie.
 - "Purchased" marks live in the browser's localStorage.
+- The last shopping record lives in the playlist's description on Spotify.
 
 ## Repository layout
 
@@ -28,6 +29,7 @@ A single Worker serves both the SPA assets and the dynamic routes. There is no d
 | `index.html`, `src/client/` | React SPA |
 | `src/worker/` | Hono app (`index.ts` is the entrypoint, `export default app`) |
 | `src/worker/mora/` | mora search client, title/artist normalization, matcher, redirector route |
+| `src/worker/lastShopping.ts` | Reads and writes the last shopping record in a playlist description |
 | `src/shared/types.ts` | API contract between worker and client: request/response and error codes |
 | `public/_headers` | CSP and security headers for static assets (production only) |
 | `test/` | `bun test` suites, helpers, and recorded mora fixtures |
@@ -40,7 +42,7 @@ Read the ones that cover the area you are working on.
 | Document | Covers | Read before |
 |---|---|---|
 | [docs/toolchain.md](docs/toolchain.md) | `cf` CLI vs Wrangler, the three type-check programs, trustless local development | touching config, bindings, route prefixes, build or dev setup; fixing type errors |
-| [docs/worker.md](docs/worker.md) | Worker routes, middleware, sealed cookies, session and token refresh, CSRF | changing `/auth` or `/api` routes, cookies or error handling |
+| [docs/worker.md](docs/worker.md) | Worker routes, middleware, sealed cookies, session and token refresh, CSRF, the last shopping record | changing `/auth` or `/api` routes, cookies, error handling or the playlist description format |
 | [docs/spotify.md](docs/spotify.md) | Spotify Web API facts: Development Mode limits, endpoints, tokens, normalization | calling Spotify or changing how playlist items are fetched or removed |
 | [docs/mora.md](docs/mora.md) | mora search API facts, the `/mora/redirect` request and the matching algorithm | changing mora search, matching thresholds or the redirector |
 | [docs/client.md](docs/client.md) | SPA routing and data fetching, grouping, purchased marks, removal, styling, CSP | changing anything under `src/client/` or `public/_headers` |

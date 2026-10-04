@@ -26,6 +26,8 @@
 - Confirmed in a `<dialog>`, then posted in batches of 500.
 - Each successful batch's marks are cleared immediately, so a partial failure leaves only the unremoved songs marked.
 - The items cache is then pruned optimistically and revalidated.
+- If any song was removed and the user owns the playlist, the client records the shopping with `PUT /api/playlists/:id/last-shopping` and puts the response into the playlist cache without revalidating. A failure there is only logged, because the songs are already gone.
+- The playlist header shows the last shopping date and song count.
 
 **Styling**
 - One plain stylesheet, `style.css`, light theme only. Don't add dark mode.

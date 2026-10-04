@@ -20,6 +20,11 @@ export type GetMeResponse = {
 	displayName: string | null;
 };
 
+export type LastShopping = {
+	at: string;
+	songCount: number;
+};
+
 export type GetPlaylistResponse = {
 	id: string;
 	name: string;
@@ -28,6 +33,7 @@ export type GetPlaylistResponse = {
 	collaborative: boolean;
 	imageUrl: string | null;
 	externalUrl: string;
+	lastShopping: LastShopping | null;
 };
 
 export type PlaylistTrack = {
@@ -61,3 +67,10 @@ export type RemovePlaylistItemsResponse = {
 	snapshotId: string | null;
 	removed: number;
 };
+
+export type PutLastShoppingRequest = {
+	songCount: number;
+	timeZone: string;
+};
+
+export type PutLastShoppingResponse = LastShopping;

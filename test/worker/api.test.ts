@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, mock, test } from "bun:test";
 import app from "../../src/worker/index.ts";
+import { formatDescription } from "../../src/worker/lastShopping.ts";
 import type { Session } from "../../src/worker/session.ts";
 import { normalizeItemsPage, type SpotifyItemsPage } from "../../src/worker/spotify.ts";
 import { sessionCookie, setCookies } from "../helpers/cookies.ts";
@@ -21,6 +22,14 @@ function postRemove(body: unknown, headers: Record<string, string> = {}) {
 	return request(`/api/playlists/${PLAYLIST_ID}/remove`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json", "Sec-Fetch-Site": "same-origin", ...headers },
+		body: JSON.stringify(body),
+	});
+}
+
+function putLastShopping(body: unknown) {
+	return request(`/api/playlists/${PLAYLIST_ID}/last-shopping`, {
+		method: "PUT",
+		headers: { "Content-Type": "application/json", "Sec-Fetch-Site": "same-origin" },
 		body: JSON.stringify(body),
 	});
 }
@@ -122,10 +131,29 @@ describe("GET /api/playlists/:id", () => {
 			collaborative: false,
 			imageUrl: null,
 			externalUrl: `https://open.spotify.com/playlist/${PLAYLIST_ID}`,
+			lastShopping: null,
 		});
 		const url = new URL(requests[0]!.url);
 		expect(url.pathname).toBe(`/v1/playlists/${PLAYLIST_ID}`);
 		expect(url.searchParams.has("market")).toBe(false);
+	});
+
+	test("reads the last shopping record from the description", async () => {
+		const lastShopping = { at: "2026-10-05T00:00:00.000Z", songCount: 3 };
+		const requests = mockFetch(() =>
+			jsonResponse({
+				id: PLAYLIST_ID,
+				name: "Cart",
+				description: formatDescription("Songs to buy", lastShopping, "UTC"),
+				owner: { id: "u1", display_name: "User" },
+				collaborative: false,
+				images: null,
+				external_urls: { spotify: `https://open.spotify.com/playlist/${PLAYLIST_ID}` },
+			}),
+		);
+		const response = await request(`/api/playlists/${PLAYLIST_ID}`);
+		expect(await response.json()).toMatchObject({ lastShopping });
+		expect(new URL(requests[0]!.url).searchParams.get("fields")).toContain("description");
 	});
 
 	test("rejects malformed ids before calling Spotify", async () => {
@@ -264,6 +292,48 @@ describe("POST /api/playlists/:id/remove", () => {
 	test("explains the owner/collaborator restriction on 403", async () => {
 		mockFetch(() => jsonResponse({}, { status: 403 }));
 		const response = await postRemove({ uris: [uri(1)] });
+		expect(response.status).toBe(403);
+		expect(await response.json()).toEqual({ code: "playlist_forbidden" });
+	});
+});
+
+describe("PUT /api/playlists/:id/last-shopping", () => {
+	test("rewrites the description with the new record", async () => {
+		const requests = mockFetch((req) =>
+			req.method === "GET" ? jsonResponse({ description: "Songs &amp; albums to buy" }) : new Response(null),
+		);
+		const before = Date.now();
+		const response = await putLastShopping({ songCount: 4, timeZone: "Asia/Tokyo" });
+		const body = (await response.json()) as { at: string; songCount: number };
+		expect(body.songCount).toBe(4);
+		expect(Date.parse(body.at)).toBeGreaterThanOrEqual(before);
+
+		expect(requests.map((r) => r.method)).toEqual(["GET", "PUT"]);
+		const url = new URL(requests[0]!.url);
+		expect(url.pathname).toBe(`/v1/playlists/${PLAYLIST_ID}`);
+		expect(url.searchParams.get("fields")).toBe("description");
+		expect(requests[1]!.url).toBe(`https://api.spotify.com/v1/playlists/${PLAYLIST_ID}`);
+		expect(await requests[1]!.json()).toEqual({
+			description: formatDescription("Songs & albums to buy", body, "Asia/Tokyo"),
+		});
+	});
+
+	test.each([
+		[{ timeZone: "UTC" }],
+		[{ songCount: 0, timeZone: "UTC" }],
+		[{ songCount: 1.5, timeZone: "UTC" }],
+		[{ songCount: 1 }],
+		[{ songCount: 1, timeZone: "Mars/Olympus_Mons" }],
+	])("rejects invalid bodies %#", async (body) => {
+		const requests = mockFetch(() => jsonResponse({}));
+		const response = await putLastShopping(body);
+		expect(response.status).toBe(400);
+		expect(requests).toHaveLength(0);
+	});
+
+	test("reports playlists the user cannot edit", async () => {
+		mockFetch((req) => (req.method === "GET" ? jsonResponse({ description: "" }) : jsonResponse({}, { status: 403 })));
+		const response = await putLastShopping({ songCount: 1, timeZone: "UTC" });
 		expect(response.status).toBe(403);
 		expect(await response.json()).toEqual({ code: "playlist_forbidden" });
 	});
