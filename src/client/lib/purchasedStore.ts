@@ -1,4 +1,5 @@
 import type { PlaylistTrack } from "../../shared/types.ts";
+import type { AlbumGroup } from "./grouping.ts";
 
 export const PURCHASED_STORAGE_KEY = "spotify-shopping-cart:purchased";
 
@@ -31,4 +32,21 @@ export function isPurchased(map: PurchasedMap, track: PlaylistTrack): boolean {
 	const at = map[track.uri];
 	if (at === undefined) return false;
 	return track.addedAt === null || Date.parse(at) >= Date.parse(track.addedAt);
+}
+
+// Each group keeps its purchased tracks once per URI; the most recently marked group comes first.
+export function purchasedGroups(groups: AlbumGroup[], map: PurchasedMap): AlbumGroup[] {
+	const marked: { group: AlbumGroup; latestMarkedAt: number }[] = [];
+	for (const group of groups) {
+		const tracks = new Map<string, PlaylistTrack>();
+		let latestMarkedAt = 0;
+		for (const track of group.tracks) {
+			const at = map[track.uri];
+			if (track.isLocal || at === undefined || tracks.has(track.uri) || !isPurchased(map, track)) continue;
+			tracks.set(track.uri, track);
+			latestMarkedAt = Math.max(latestMarkedAt, Date.parse(at));
+		}
+		if (tracks.size > 0) marked.push({ group: { ...group, tracks: [...tracks.values()] }, latestMarkedAt });
+	}
+	return marked.toSorted((a, b) => b.latestMarkedAt - a.latestMarkedAt).map(({ group }) => group);
 }

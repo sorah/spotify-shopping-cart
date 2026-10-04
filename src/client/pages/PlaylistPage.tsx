@@ -10,12 +10,13 @@ import type {
 import { ApiRequestError, fetchAllPlaylistItems, postJson } from "../api.ts";
 import { AlbumGroupCard } from "../components/AlbumGroupCard.tsx";
 import { ApiErrorNotice } from "../components/ApiErrorNotice.tsx";
+import { PurchasedPanel } from "../components/PurchasedPanel.tsx";
 import { RemoveDialog } from "../components/RemoveDialog.tsx";
 import { useMe } from "../hooks/useMe.ts";
 import { unmarkTracksPurchased, usePurchased } from "../hooks/usePurchased.ts";
 import { pluralize } from "../lib/format.ts";
 import { groupByAlbum } from "../lib/grouping.ts";
-import { isPurchased } from "../lib/purchasedStore.ts";
+import { purchasedGroups } from "../lib/purchasedStore.ts";
 
 // Matches the worker's per-request cap.
 const REMOVE_BATCH_SIZE = 500;
@@ -30,13 +31,10 @@ export default function PlaylistPage() {
 	);
 	const purchased = usePurchased();
 	const groups = useMemo(() => (items.data ? groupByAlbum(items.data) : []), [items.data]);
+	const purchasedAlbums = useMemo(() => purchasedGroups(groups, purchased), [groups, purchased]);
 	const purchasedUris = useMemo(
-		() => [
-			...new Set(
-				(items.data ?? []).filter((track) => !track.isLocal && isPurchased(purchased, track)).map((t) => t.uri),
-			),
-		],
-		[items.data, purchased],
+		() => purchasedAlbums.flatMap((group) => group.tracks.map((track) => track.uri)),
+		[purchasedAlbums],
 	);
 
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -115,30 +113,20 @@ export default function PlaylistPage() {
 			) : groups.length === 0 ? (
 				<p className="empty">This playlist is empty. Nothing left to buy!</p>
 			) : (
-				<div className="albums">
-					{groups.map((group) => (
-						<AlbumGroupCard key={group.key} group={group} purchased={purchased} />
-					))}
-				</div>
-			)}
-
-			{purchasedUris.length > 0 && (
-				<div className="action-bar" role="region" aria-label="Purchased songs">
-					<p>
-						<strong>{pluralize(purchasedUris.length, "song")}</strong> marked as purchased
-					</p>
-					<button
-						type="button"
-						className="button button-danger"
-						disabled={!canEdit}
-						title={canEdit ? undefined : "Only playlists you own or collaborate on can be edited"}
-						onClick={() => {
+				<div className="playlist-body">
+					<div className="albums">
+						{groups.map((group) => (
+							<AlbumGroupCard key={group.key} group={group} purchased={purchased} />
+						))}
+					</div>
+					<PurchasedPanel
+						groups={purchasedAlbums}
+						canEdit={canEdit}
+						onRemove={() => {
 							setRemoveError(undefined);
 							setIsDialogOpen(true);
 						}}
-					>
-						Remove from playlist
-					</button>
+					/>
 				</div>
 			)}
 

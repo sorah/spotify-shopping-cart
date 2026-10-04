@@ -13,8 +13,13 @@
 	--radius-small: 8px;
 	--shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 16px rgb(0 0 0 / 0.04);
 	--font: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", sans-serif;
+	--content-width: 880px;
 
 	color-scheme: light;
+}
+
+:root:has(.playlist) {
+	--content-width: 1200px;
 }
 
 *,
@@ -62,7 +67,7 @@ p {
 	align-items: center;
 	justify-content: space-between;
 	gap: 16px;
-	padding: 12px max(16px, calc((100% - 880px) / 2 + 16px));
+	padding: 12px max(16px, calc((100% - var(--content-width)) / 2 + 16px));
 	background: color-mix(in srgb, var(--color-bg) 85%, transparent);
 	backdrop-filter: blur(12px);
 	border-bottom: 1px solid var(--color-border);
@@ -103,7 +108,7 @@ p {
 }
 
 .site-main {
-	max-width: 880px;
+	max-width: var(--content-width);
 	margin: 0 auto;
 	padding: 32px 16px 96px;
 }
@@ -180,6 +185,23 @@ p {
 
 	&:hover {
 		background: var(--color-surface);
+	}
+}
+
+.button-icon {
+	flex: none;
+	width: 28px;
+	min-height: 28px;
+	padding: 0;
+	background: transparent;
+	color: var(--color-muted);
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 1;
+
+	&:hover {
+		background: color-mix(in srgb, var(--color-danger) 10%, transparent);
+		color: var(--color-danger);
 	}
 }
 
@@ -311,6 +333,11 @@ p {
 	padding: 48px 0;
 	color: var(--color-muted);
 	text-align: center;
+}
+
+.playlist-body {
+	display: grid;
+	gap: 24px;
 }
 
 .albums {
@@ -491,6 +518,133 @@ p {
 	from {
 		opacity: 0;
 		translate: 0 12px;
+	}
+}
+
+.purchased-card {
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+	overflow: hidden;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius);
+	background: var(--color-surface);
+	box-shadow: var(--shadow);
+}
+
+.purchased-title {
+	padding: 12px 16px;
+	border-bottom: 1px solid var(--color-border);
+	font-size: 15px;
+}
+
+.purchased-empty {
+	padding: 14px 16px;
+	color: var(--color-muted);
+	font-size: 13px;
+}
+
+.purchased-albums {
+	margin: 0;
+	padding: 0;
+	overflow-y: auto;
+	list-style: none;
+}
+
+.purchased-album {
+	padding: 12px 16px;
+
+	& + & {
+		border-top: 1px solid var(--color-border);
+	}
+}
+
+.purchased-album-header {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.purchased-cover {
+	flex: none;
+	width: 40px;
+	height: 40px;
+	border-radius: 6px;
+	object-fit: cover;
+}
+
+.purchased-album-info {
+	display: grid;
+	flex: 1;
+	min-width: 0;
+}
+
+.purchased-album-name {
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.35;
+	overflow-wrap: anywhere;
+}
+
+.purchased-album-artists {
+	color: var(--color-muted);
+	font-size: 12px;
+}
+
+.purchased-tracks {
+	margin: 6px 0 0;
+	/* Aligns with the album name next to the cover. */
+	padding: 0 0 0 50px;
+	list-style: none;
+}
+
+.purchased-track {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	font-size: 13px;
+}
+
+.purchased-track-name {
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+@media (width >= 960px) {
+	/* Matches the panel's bottom gap so the end of the page doesn't push the panel under the site header. */
+	.site-main:has(.playlist-body) {
+		padding-bottom: 32px;
+	}
+
+	.playlist-body {
+		grid-template-columns: minmax(0, 1fr) 340px;
+		align-items: start;
+	}
+
+	.purchased {
+		position: sticky;
+		/* Clears the sticky site header. */
+		top: 72px;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		max-height: calc(100dvh - 72px - 32px);
+	}
+
+	.purchased .action-bar {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 10px;
+		padding: 14px 16px;
+		border-radius: var(--radius);
+	}
+}
+
+/* Lets the action bar stick to the viewport bottom across the whole album list. */
+@media (width < 960px) {
+	.purchased {
+		display: contents;
 	}
 }
 

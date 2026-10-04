@@ -284,6 +284,7 @@ To change any threshold or weight, record a fixture for the failing case and add
 - A track counts as purchased only if `markedAt >= addedAt`, so a song re-added to the cart later shows up as unpurchased.
 - Clicking any song's mora link (`onClick`, or `onAuxClick` with the middle button) marks every non-local track in that album group, because the link lands on the album page. Groups also have manual "Mark purchased" and "Undo" buttons.
 - The hook uses `useSyncExternalStore` with an in-module listener set plus the `storage` event, so marks sync across tabs.
+- `components/PurchasedPanel.tsx` lists the purchased songs by album (`purchasedGroups`), most recently marked album first so a misclick is at the top. Each song, and each album with more than one song, can be unmarked there.
 
 **Removal (`pages/PlaylistPage.tsx`, `components/RemoveDialog.tsx`)**
 - Enabled only when `ownerId === me.id || collaborative`.
@@ -294,7 +295,8 @@ To change any threshold or weight, record a fixture for the failing case and add
 **Styling**
 - One plain stylesheet, `style.css`, light theme only. Don't add dark mode.
 - Modern CSS is fine, including Baseline features of limited availability: nesting, `color-mix()`, `:has()`, `<dialog>`, range media queries.
-- The layout targets a column of at most 880px and must work at phone width.
+- Pages use a column of at most 880px (`--content-width`). The playlist page widens it to 1200px and, from 960px up, shows the album list beside a sticky purchased panel. Everything must work at phone width.
+- Below 960px the panel's `<aside>` is `display: contents`, so its action bar sticks to the viewport bottom across the whole album list.
 
 **CSP**
 - `public/_headers` sets a CSP for asset responses: `script-src 'self'`, `style-src 'self'`, images from `*.scdn.co` and `*.spotifycdn.com`.
