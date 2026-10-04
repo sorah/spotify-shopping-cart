@@ -3,6 +3,10 @@
 	"compilerOptions": {
 		"types": [
 			"bun"
+		],
+		"lib": [
+			"es2024",
+			"dom"
 		]
 	},
 	"include": [
