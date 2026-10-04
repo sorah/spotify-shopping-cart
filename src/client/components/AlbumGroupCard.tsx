@@ -1,11 +1,25 @@
-import type { AlbumGroup } from "../lib/grouping.ts";
+import { markTracksPurchased, unmarkTracksPurchased } from "../hooks/usePurchased.ts";
 import { formatDate, joinArtists, pluralize } from "../lib/format.ts";
+import type { AlbumGroup } from "../lib/grouping.ts";
+import { isPurchased, type PurchasedMap } from "../lib/purchasedStore.ts";
 import { TrackRow } from "./TrackRow.tsx";
 
-export function AlbumGroupCard({ group }: { group: AlbumGroup }) {
+type Props = {
+	group: AlbumGroup;
+	purchased: PurchasedMap;
+};
+
+export function AlbumGroupCard({ group, purchased }: Props) {
 	const albumArtists = joinArtists(group.album.artists);
+	const purchasableUris = group.tracks.filter((track) => !track.isLocal).map((track) => track.uri);
+	const isGroupPurchased =
+		purchasableUris.length > 0 &&
+		group.tracks.every((track) => track.isLocal || isPurchased(purchased, track));
+	// The mora link opens the album page, so every song from that album is marked at once.
+	const markGroup = () => markTracksPurchased(purchasableUris);
+
 	return (
-		<article className="album">
+		<article className="album" data-purchased={isGroupPurchased || undefined}>
 			<header className="album-header">
 				{group.album.imageUrl ? (
 					<img className="album-cover" src={group.album.imageUrl} alt="" loading="lazy" width={64} height={64} />
@@ -20,6 +34,23 @@ export function AlbumGroupCard({ group }: { group: AlbumGroup }) {
 						{group.latestAddedAt && <> · added {formatDate(group.latestAddedAt)}</>}
 					</p>
 				</div>
+				{purchasableUris.length > 0 &&
+					(isGroupPurchased ? (
+						<div className="album-status">
+							<span className="badge-purchased">Purchased</span>
+							<button
+								type="button"
+								className="button button-quiet"
+								onClick={() => unmarkTracksPurchased(purchasableUris)}
+							>
+								Undo
+							</button>
+						</div>
+					) : (
+						<button type="button" className="button button-quiet album-mark" onClick={markGroup}>
+							Mark purchased
+						</button>
+					))}
 			</header>
 			<ol className="tracks">
 				{group.tracks.map((track) => (
@@ -27,6 +58,8 @@ export function AlbumGroupCard({ group }: { group: AlbumGroup }) {
 						key={`${track.uri}:${track.position}`}
 						track={track}
 						shouldShowArtists={joinArtists(track.artists) !== albumArtists}
+						isPurchased={!track.isLocal && isPurchased(purchased, track)}
+						onOpenMora={markGroup}
 					/>
 				))}
 			</ol>

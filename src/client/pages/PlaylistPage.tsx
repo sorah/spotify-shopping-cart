@@ -1,13 +1,24 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useParams } from "react-router";
 import useSWR from "swr";
-import type { GetPlaylistResponse, PlaylistTrack } from "../../shared/types.ts";
-import { type ApiRequestError, fetchAllPlaylistItems } from "../api.ts";
+import type {
+	GetPlaylistResponse,
+	PlaylistTrack,
+	RemovePlaylistItemsRequest,
+	RemovePlaylistItemsResponse,
+} from "../../shared/types.ts";
+import { ApiRequestError, fetchAllPlaylistItems, postJson } from "../api.ts";
 import { AlbumGroupCard } from "../components/AlbumGroupCard.tsx";
 import { ApiErrorNotice } from "../components/ApiErrorNotice.tsx";
+import { RemoveDialog } from "../components/RemoveDialog.tsx";
 import { useMe } from "../hooks/useMe.ts";
+import { unmarkTracksPurchased, usePurchased } from "../hooks/usePurchased.ts";
 import { pluralize } from "../lib/format.ts";
 import { groupByAlbum } from "../lib/grouping.ts";
+import { isPurchased } from "../lib/purchasedStore.ts";
+
+// Matches the worker's per-request cap.
+const REMOVE_BATCH_SIZE = 500;
 
 export default function PlaylistPage() {
 	const { id = "" } = useParams();
@@ -17,7 +28,55 @@ export default function PlaylistPage() {
 	const items = useSWR<PlaylistTrack[], ApiRequestError>(me ? ["playlist-items", id] : null, () =>
 		fetchAllPlaylistItems(id),
 	);
+	const purchased = usePurchased();
 	const groups = useMemo(() => (items.data ? groupByAlbum(items.data) : []), [items.data]);
+	const purchasedUris = useMemo(
+		() => [
+			...new Set(
+				(items.data ?? []).filter((track) => !track.isLocal && isPurchased(purchased, track)).map((t) => t.uri),
+			),
+		],
+		[items.data, purchased],
+	);
+
+	const [isDialogOpen, setIsDialogOpen] = useState(false);
+	const [isRequesting, setIsRequesting] = useState(false);
+	const [removeError, setRemoveError] = useState<string>();
+
+	const canEdit =
+		me !== undefined &&
+		playlist.data !== undefined &&
+		(playlist.data.ownerId === me.id || playlist.data.collaborative);
+
+	const removePurchased = async () => {
+		if (isRequesting) return;
+		setIsRequesting(true);
+		setRemoveError(undefined);
+		const removed = new Set<string>();
+		try {
+			for (let i = 0; i < purchasedUris.length; i += REMOVE_BATCH_SIZE) {
+				const uris = purchasedUris.slice(i, i + REMOVE_BATCH_SIZE);
+				await postJson<RemovePlaylistItemsResponse>(`/api/playlists/${id}/remove`, {
+					uris,
+				} satisfies RemovePlaylistItemsRequest);
+				for (const uri of uris) removed.add(uri);
+				unmarkTracksPurchased(uris);
+			}
+			setIsDialogOpen(false);
+		} catch (error) {
+			console.error(error);
+			setRemoveError(
+				error instanceof ApiRequestError && error.code === "playlist_forbidden"
+					? "Spotify only lets this app edit playlists you own or collaborate on."
+					: "Some songs couldn't be removed. Try again.",
+			);
+		} finally {
+			setIsRequesting(false);
+			if (removed.size > 0) {
+				await items.mutate((current) => current?.filter((track) => !removed.has(track.uri)));
+			}
+		}
+	};
 
 	const error = meError ?? playlist.error ?? items.error;
 	if (error) return <ApiErrorNotice error={error} />;
@@ -58,10 +117,40 @@ export default function PlaylistPage() {
 			) : (
 				<div className="albums">
 					{groups.map((group) => (
-						<AlbumGroupCard key={group.key} group={group} />
+						<AlbumGroupCard key={group.key} group={group} purchased={purchased} />
 					))}
 				</div>
 			)}
+
+			{purchasedUris.length > 0 && (
+				<div className="action-bar" role="region" aria-label="Purchased songs">
+					<p>
+						<strong>{pluralize(purchasedUris.length, "song")}</strong> marked as purchased
+					</p>
+					<button
+						type="button"
+						className="button button-danger"
+						disabled={!canEdit}
+						title={canEdit ? undefined : "Only playlists you own or collaborate on can be edited"}
+						onClick={() => {
+							setRemoveError(undefined);
+							setIsDialogOpen(true);
+						}}
+					>
+						Remove from playlist
+					</button>
+				</div>
+			)}
+
+			<RemoveDialog
+				isOpen={isDialogOpen}
+				count={purchasedUris.length}
+				playlistName={playlist.data?.name ?? ""}
+				isRequesting={isRequesting}
+				error={removeError}
+				onConfirm={removePurchased}
+				onClose={() => !isRequesting && setIsDialogOpen(false)}
+			/>
 		</section>
 	);
 }
