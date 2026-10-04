@@ -30,6 +30,7 @@ The code targets the API as it stands after the February 2026 changes for Develo
 - Local files are kept with `album.id = null`.
 - `position` is the absolute playlist index.
 - The image is the smallest one at least 128px wide.
+- `durationMs`, `trackNumber`, `discNumber` and `isrc` (from `external_ids`) are for the local library companion's matching; a missing value becomes `null`. The February 2026 changelog removed `external_ids` for Development Mode apps, but the March 2026 changelog reverted that, and every track of the real playlist came back with an ISRC in October 2026.
 
 **Pagination**
 - The client loops `nextOffset` itself. Each page is one Worker request with one subrequest, which avoids the Worker subrequest limit on large playlists.

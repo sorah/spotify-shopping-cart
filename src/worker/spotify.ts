@@ -22,6 +22,10 @@ type SpotifyTrack = {
 	uri: string;
 	name: string;
 	is_local?: boolean;
+	duration_ms?: number | null;
+	track_number?: number | null;
+	disc_number?: number | null;
+	external_ids?: { isrc?: string } | null;
 	artists?: SpotifyArtist[];
 	album?: {
 		id: string | null;
@@ -64,7 +68,8 @@ type SpotifyUser = {
 	display_name: string | null;
 };
 
-const TRACK_FIELDS = "type,uri,name,is_local,artists(name),album(id,name,total_tracks,images,artists(name))";
+const TRACK_FIELDS =
+	"type,uri,name,is_local,duration_ms,track_number,disc_number,external_ids(isrc),artists(name),album(id,name,total_tracks,images,artists(name))";
 // Spotify is migrating from "track" to "item"; request both so the filter keeps whichever is present.
 const ITEMS_FIELDS = `next,total,items(added_at,is_local,item(${TRACK_FIELDS}),track(${TRACK_FIELDS}))`;
 const PLAYLIST_FIELDS = "id,name,description,owner(id,display_name),collaborative,images,external_urls";
@@ -193,6 +198,10 @@ export function normalizeItemsPage(page: SpotifyItemsPage, offset: number): GetP
 				imageUrl: pickImage(track.album?.images),
 				totalTracks: track.album?.total_tracks ?? null,
 			},
+			durationMs: track.duration_ms ?? null,
+			trackNumber: track.track_number ?? null,
+			discNumber: track.disc_number ?? null,
+			isrc: track.external_ids?.isrc ?? null,
 			addedAt: entry.added_at,
 			isLocal: entry.is_local ?? track.is_local ?? false,
 			position: offset + index,

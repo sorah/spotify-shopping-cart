@@ -40,6 +40,10 @@ function track(id: string, overrides: Record<string, unknown> = {}) {
 		uri: `spotify:track:${id}`,
 		name: `Song ${id}`,
 		is_local: false,
+		duration_ms: 215000,
+		track_number: 3,
+		disc_number: 1,
+		external_ids: { isrc: "JPXX02600001" },
 		artists: [{ name: "Artist" }],
 		album: {
 			id: "album1",
@@ -237,11 +241,30 @@ describe("normalizeItemsPage", () => {
 				imageUrl: "https://i.test/300",
 				totalTracks: 10,
 			},
+			durationMs: 215000,
+			trackNumber: 3,
+			discNumber: 1,
+			isrc: "JPXX02600001",
 			addedAt: "2026-10-01T00:00:00Z",
 			isLocal: false,
 			position: 0,
 		});
 		expect(local).toMatchObject({ isLocal: true, addedAt: null, album: { id: null, imageUrl: null } });
+	});
+
+	test("reads a missing ISRC as null", () => {
+		const { items } = normalizeItemsPage(
+			{
+				next: null,
+				total: 2,
+				items: [
+					{ added_at: null, item: track("C".repeat(22), { external_ids: {} }) as never },
+					{ added_at: null, item: track("D".repeat(22), { external_ids: undefined }) as never },
+				],
+			},
+			0,
+		);
+		expect(items.map((item) => item.isrc)).toEqual([null, null]);
 	});
 
 	test("ends pagination when there is no next page", () => {

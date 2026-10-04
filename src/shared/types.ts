@@ -48,6 +48,10 @@ export type PlaylistTrack = {
 		imageUrl: string | null;
 		totalTracks: number | null;
 	};
+	durationMs: number | null;
+	trackNumber: number | null;
+	discNumber: number | null;
+	isrc: string | null;
 	addedAt: string | null;
 	isLocal: boolean;
 	position: number;
