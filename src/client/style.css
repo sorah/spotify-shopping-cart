@@ -378,6 +378,8 @@ p {
 }
 
 .album {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
 	overflow: hidden;
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius);
@@ -495,18 +497,43 @@ p {
 	}
 }
 
-.album-status {
+.album-action {
 	display: flex;
-	flex: none;
+	justify-content: center;
 	align-items: center;
-	gap: 8px;
+	width: 44px;
+	padding: 0;
+	border: none;
+	border-left: 1px solid var(--color-border);
+	background: transparent;
+	color: var(--color-muted);
+	font: inherit;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1;
+	cursor: pointer;
+	transition:
+		background-color 0.15s,
+		color 0.15s;
+
+	&:hover {
+		background: color-mix(in srgb, var(--color-text) 6%, transparent);
+		color: var(--color-text);
+	}
+
+	/* The card clips overflow, so an outside outline would be cut off. */
+	&:focus-visible {
+		outline-offset: -2px;
+	}
 }
 
-.album-mark {
-	flex: none;
+.album-action-mark:hover {
+	background: color-mix(in srgb, var(--color-done) 10%, transparent);
+	color: var(--color-done);
 }
 
 .badge-purchased {
+	flex: none;
 	padding: 2px 10px;
 	border-radius: 999px;
 	background: color-mix(in srgb, var(--color-done) 14%, transparent);
@@ -516,7 +543,19 @@ p {
 }
 
 .album[data-purchased] {
-	border-color: color-mix(in srgb, var(--color-done) 35%, var(--color-border));
+	border-color: color-mix(in srgb, var(--color-text) 16%, var(--color-border));
+	background: color-mix(in srgb, var(--color-text) 9%, var(--color-bg));
+	box-shadow: none;
+
+	& .album-body {
+		background-image: repeating-linear-gradient(-45deg, rgb(0 0 0 / 0.06) 0 8px, transparent 8px 16px);
+	}
+
+	& .tracks,
+	& .track + .track,
+	& .album-action {
+		border-color: color-mix(in srgb, var(--color-text) 12%, transparent);
+	}
 
 	& .album-cover,
 	& .album-info,
@@ -724,8 +763,7 @@ p {
 		flex-basis: calc(100% - 78px);
 	}
 
-	.album-status,
-	.album-mark {
+	.album-header .badge-purchased {
 		margin-left: 78px;
 	}
 

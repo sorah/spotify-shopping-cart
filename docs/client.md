@@ -17,7 +17,7 @@
 **Purchased marks (`lib/purchasedStore.ts`, `hooks/usePurchased.ts`)**
 - Stored in localStorage under `spotify-shopping-cart:purchased` as `Record<trackUri, ISO time marked>`.
 - A track counts as purchased only if `markedAt >= addedAt`, so a song re-added to the cart later shows up as unpurchased.
-- Clicking any song's mora link (`onClick`, or `onAuxClick` with the middle button) marks every non-local track in that album group, because the link lands on the album page. Groups also have manual "Mark purchased" and "Undo" buttons.
+- Clicking any song's mora link (`onClick`, or `onAuxClick` with the middle button) marks every non-local track in that album group, because the link lands on the album page. Groups also have manual "Mark purchased" (✓) and "Undo" (↺) icon buttons in a strip along the card's right edge.
 - The hook uses `useSyncExternalStore` with an in-module listener set plus the `storage` event, so marks sync across tabs.
 - `components/PurchasedPanel.tsx` lists the purchased songs by album (`purchasedGroups`), most recently marked album first so a misclick is at the top. Each song, and each album with more than one song, can be unmarked there.
 
