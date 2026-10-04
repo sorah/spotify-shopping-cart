@@ -1,0 +1,17 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"lib": [
+			"es2024",
+			"dom"
+		],
+		"jsx": "react-jsx",
+		"types": [
+			"vite/client"
+		]
+	},
+	"include": [
+		"src/client",
+		"src/shared"
+	]
+}
