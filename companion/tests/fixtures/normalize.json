@@ -1,0 +1,685 @@
+{
+	"titles": [
+		{
+			"input": "STRAY SHEEP (Deluxe Edition)",
+			"norm": "stray sheep deluxe edition",
+			"fullKey": "stray sheep deluxe edition",
+			"baseKey": "stray sheep"
+		},
+		{
+			"input": "Lemon - Single",
+			"norm": "lemon single",
+			"fullKey": "lemon single",
+			"baseKey": "lemon"
+		},
+		{
+			"input": "うっせぇわ (Giga Remix)",
+			"norm": "うっせぇわ giga remix",
+			"fullKey": "うっせぇわ giga remix",
+			"baseKey": "うっせぇわ giga remix"
+		},
+		{
+			"input": "Song (feat. Someone)",
+			"norm": "song feat someone",
+			"fullKey": "song",
+			"baseKey": "song"
+		},
+		{
+			"input": "アルバム [ハイレゾ 96kHz/24bit]",
+			"norm": "アルバム ハイレゾ 96khz 24bit",
+			"fullKey": "アルバム",
+			"baseKey": "アルバム"
+		},
+		{
+			"input": "Lemon 〜ドラマ「アンナチュラル」主題歌〜",
+			"norm": "lemon ドラマ アンナチュラル 主題歌",
+			"fullKey": "lemon ドラマ アンナチュラル 主題歌",
+			"baseKey": "lemon"
+		},
+		{
+			"input": "Ｆｕｌｌｗｉｄｔｈ・タイトル",
+			"norm": "fullwidth タイトル",
+			"fullKey": "fullwidth タイトル",
+			"baseKey": "fullwidth タイトル"
+		},
+		{
+			"input": "(Remastered)",
+			"norm": "remastered",
+			"fullKey": "remastered",
+			"baseKey": "remastered"
+		},
+		{
+			"input": "Title - Instrumental",
+			"norm": "title instrumental",
+			"fullKey": "title instrumental",
+			"baseKey": "title instrumental"
+		},
+		{
+			"input": "Title (Instrumental)",
+			"norm": "title instrumental",
+			"fullKey": "title instrumental",
+			"baseKey": "title instrumental"
+		},
+		{
+			"input": "星と僕らと - tofubeats Remix",
+			"norm": "星と僕らと tofubeats remix",
+			"fullKey": "星と僕らと tofubeats remix",
+			"baseKey": "星と僕らと tofubeats remix"
+		},
+		{
+			"input": "星と僕らと (tofubeats Remix)",
+			"norm": "星と僕らと tofubeats remix",
+			"fullKey": "星と僕らと tofubeats remix",
+			"baseKey": "星と僕らと tofubeats remix"
+		},
+		{
+			"input": "ガチ恋ラビリンス (long ver.)",
+			"norm": "ガチ恋ラビリンス long ver",
+			"fullKey": "ガチ恋ラビリンス long ver",
+			"baseKey": "ガチ恋ラビリンス long ver"
+		},
+		{
+			"input": "ガチ恋ラビリンス - long ver.",
+			"norm": "ガチ恋ラビリンス long ver",
+			"fullKey": "ガチ恋ラビリンス long ver",
+			"baseKey": "ガチ恋ラビリンス long ver"
+		},
+		{
+			"input": "流星のパルス (feat. 星乃一歌, 天馬咲希, 望月穂波, 日野森志歩 & MEIKO)",
+			"norm": "流星のパルス feat 星乃一歌 天馬咲希 望月穂波 日野森志歩 meiko",
+			"fullKey": "流星のパルス",
+			"baseKey": "流星のパルス"
+		},
+		{
+			"input": "Happy Merry-Go-Round!",
+			"norm": "happy merry go round",
+			"fullKey": "happy merry go round",
+			"baseKey": "happy merry go round"
+		},
+		{
+			"input": "ハッピーメリーゴーランド!",
+			"norm": "ハッピーメリーゴーランド",
+			"fullKey": "ハッピーメリーゴーランド",
+			"baseKey": "ハッピーメリーゴーランド"
+		},
+		{
+			"input": "Twilit Terraces / 落日の都 ～ラザハン～",
+			"norm": "twilit terraces 落日の都 ラザハン",
+			"fullKey": "twilit terraces 落日の都 ラザハン",
+			"baseKey": "twilit terraces 落日の都 ラザハン"
+		},
+		{
+			"input": "落日の都 〜ラザハン〜",
+			"norm": "落日の都 ラザハン",
+			"fullKey": "落日の都 ラザハン",
+			"baseKey": "落日の都 ラザハン"
+		},
+		{
+			"input": "You & I - Single",
+			"norm": "you i single",
+			"fullKey": "you i single",
+			"baseKey": "you i"
+		},
+		{
+			"input": "ユー&アイ - Single",
+			"norm": "ユー アイ single",
+			"fullKey": "ユー アイ single",
+			"baseKey": "ユー アイ"
+		},
+		{
+			"input": "海辺で逢いましょう",
+			"norm": "海辺で逢いましょう",
+			"fullKey": "海辺で逢いましょう",
+			"baseKey": "海辺で逢いましょう"
+		},
+		{
+			"input": "Umibede Aimashou",
+			"norm": "umibede aimashou",
+			"fullKey": "umibede aimashou",
+			"baseKey": "umibede aimashou"
+		},
+		{
+			"input": "THE IDOLM@STER SHINY COLORS GR@DATE WING 05",
+			"norm": "the idolm ster shiny colors gr date wing 05",
+			"fullKey": "the idolm ster shiny colors gr date wing 05",
+			"baseKey": "the idolm ster shiny colors gr date wing 05"
+		},
+		{
+			"input": "CoLoR - EP",
+			"norm": "color ep",
+			"fullKey": "color ep",
+			"baseKey": "color"
+		},
+		{
+			"input": "歌物語 Special Edition",
+			"norm": "歌物語 special edition",
+			"fullKey": "歌物語 special edition",
+			"baseKey": "歌物語 special edition"
+		},
+		{
+			"input": "Song 【初回限定盤】",
+			"norm": "song 初回限定盤",
+			"fullKey": "song 初回限定盤",
+			"baseKey": "song"
+		},
+		{
+			"input": "Song《TVアニメ「X」オープニングテーマ》",
+			"norm": "song tvアニメ x オープニングテーマ",
+			"fullKey": "song tvアニメ x オープニングテーマ",
+			"baseKey": "song"
+		},
+		{
+			"input": "Song <Bonus Track>",
+			"norm": "song bonus track",
+			"fullKey": "song bonus track",
+			"baseKey": "song"
+		},
+		{
+			"input": "Song [24bit/48kHz]",
+			"norm": "song 24bit 48khz",
+			"fullKey": "song",
+			"baseKey": "song"
+		},
+		{
+			"input": "Song (Dolby Atmos)",
+			"norm": "song dolby atmos",
+			"fullKey": "song",
+			"baseKey": "song"
+		},
+		{
+			"input": "Song (from \"Movie\")",
+			"norm": "song from movie",
+			"fullKey": "song from movie",
+			"baseKey": "song"
+		},
+		{
+			"input": "Song ~Acoustic Ver.~",
+			"norm": "song acoustic ver",
+			"fullKey": "song acoustic ver",
+			"baseKey": "song acoustic ver"
+		},
+		{
+			"input": "A - B - C",
+			"norm": "a b c",
+			"fullKey": "a b c",
+			"baseKey": "a b c"
+		},
+		{
+			"input": "A-B",
+			"norm": "a b",
+			"fullKey": "a b",
+			"baseKey": "a b"
+		},
+		{
+			"input": "Song (Live at Budokan)",
+			"norm": "song live at budokan",
+			"fullKey": "song live at budokan",
+			"baseKey": "song live at budokan"
+		},
+		{
+			"input": "Song (2024 Remaster)",
+			"norm": "song 2024 remaster",
+			"fullKey": "song 2024 remaster",
+			"baseKey": "song"
+		},
+		{
+			"input": "Ｓｏｎｇ（ｆｅａｔ．Ｘ）",
+			"norm": "song feat x",
+			"fullKey": "song feat x",
+			"baseKey": "song feat x"
+		},
+		{
+			"input": "",
+			"norm": "",
+			"fullKey": "",
+			"baseKey": ""
+		},
+		{
+			"input": "   ",
+			"norm": "",
+			"fullKey": "",
+			"baseKey": ""
+		},
+		{
+			"input": "-",
+			"norm": "",
+			"fullKey": "",
+			"baseKey": ""
+		},
+		{
+			"input": "Only (unclosed",
+			"norm": "only unclosed",
+			"fullKey": "only unclosed",
+			"baseKey": "only unclosed"
+		},
+		{
+			"input": "Nested (a (b) c)",
+			"norm": "nested a b c",
+			"fullKey": "nested c a b",
+			"baseKey": "nested c a b"
+		},
+		{
+			"input": "Tab\tSeparated",
+			"norm": "tab separated",
+			"fullKey": "tab separated",
+			"baseKey": "tab separated"
+		},
+		{
+			"input": "Ⅻ Roman numeral",
+			"norm": "xii roman numeral",
+			"fullKey": "xii roman numeral",
+			"baseKey": "xii roman numeral"
+		},
+		{
+			"input": "ｶﾀｶﾅ半角",
+			"norm": "カタカナ半角",
+			"fullKey": "カタカナ半角",
+			"baseKey": "カタカナ半角"
+		},
+		{
+			"input": "Café Déjà Vu",
+			"norm": "café déjà vu",
+			"fullKey": "café déjà vu",
+			"baseKey": "café déjà vu"
+		},
+		{
+			"input": "Straße",
+			"norm": "straße",
+			"fullKey": "straße",
+			"baseKey": "straße"
+		},
+		{
+			"input": "İstanbul",
+			"norm": "i stanbul",
+			"fullKey": "i stanbul",
+			"baseKey": "i stanbul"
+		},
+		{
+			"input": "ΣΊΣΥΦΟΣ",
+			"norm": "σίσυφος",
+			"fullKey": "σίσυφος",
+			"baseKey": "σίσυφος"
+		},
+		{
+			"input": "Song 〔Remastered 2011〕",
+			"norm": "song remastered 2011",
+			"fullKey": "song remastered 2011",
+			"baseKey": "song"
+		},
+		{
+			"input": "Song 〈Single Version〉",
+			"norm": "song single version",
+			"fullKey": "song single version",
+			"baseKey": "song single version"
+		},
+		{
+			"input": "Song - From \"Movie\"",
+			"norm": "song from movie",
+			"fullKey": "song from movie",
+			"baseKey": "song"
+		},
+		{
+			"input": "Song (with Friend)",
+			"norm": "song with friend",
+			"fullKey": "song",
+			"baseKey": "song"
+		},
+		{
+			"input": "Song (CM ソング)",
+			"norm": "song cm ソング",
+			"fullKey": "song cm ソング",
+			"baseKey": "song"
+		},
+		{
+			"input": "Song (High-Resolution Edition)",
+			"norm": "song high resolution edition",
+			"fullKey": "song",
+			"baseKey": "song"
+		}
+	],
+	"titleSim": [
+		{
+			"a": "Lemon",
+			"b": "Lemon",
+			"value": 1
+		},
+		{
+			"a": "STRAY SHEEP (Deluxe Edition)",
+			"b": "STRAY SHEEP",
+			"value": 0.92
+		},
+		{
+			"a": "うっせぇわ",
+			"b": "うっせぇわ (Giga Remix)",
+			"value": 0.47058823529411764
+		},
+		{
+			"a": "Lemon",
+			"b": "STRAY SHEEP",
+			"value": 0
+		},
+		{
+			"a": "星と僕らと - tofubeats Remix",
+			"b": "星と僕らと (tofubeats Remix)",
+			"value": 1
+		},
+		{
+			"a": "ガチ恋ラビリンス - long ver.",
+			"b": "ガチ恋ラビリンス (long ver.)",
+			"value": 1
+		},
+		{
+			"a": "流星のパルス",
+			"b": "流星のパルス (feat. 星乃一歌, 天馬咲希, 望月穂波, 日野森志歩 & MEIKO)",
+			"value": 1
+		},
+		{
+			"a": "ハッピーメリーゴーランド!",
+			"b": "Happy Merry-Go-Round!",
+			"value": 0
+		},
+		{
+			"a": "落日の都 〜ラザハン〜",
+			"b": "Twilit Terraces / 落日の都 ～ラザハン～",
+			"value": 0.5
+		},
+		{
+			"a": "ユー&アイ - Single",
+			"b": "You & I - Single",
+			"value": 0.5555555555555556
+		},
+		{
+			"a": "海辺で逢いましょう",
+			"b": "Umibede Aimashou",
+			"value": 0
+		},
+		{
+			"a": "Song",
+			"b": "Song (Instrumental)",
+			"value": 0.3333333333333333
+		},
+		{
+			"a": "Song",
+			"b": "Song - Instrumental",
+			"value": 0.3333333333333333
+		},
+		{
+			"a": "Song (2024 Remaster)",
+			"b": "Song",
+			"value": 0.92
+		},
+		{
+			"a": "Song 【初回限定盤】",
+			"b": "Song",
+			"value": 0.92
+		},
+		{
+			"a": "Song",
+			"b": "Song (Live at Budokan)",
+			"value": 0.3157894736842105
+		},
+		{
+			"a": "キスキツネ",
+			"b": "Kiss Kitsune",
+			"value": 0
+		},
+		{
+			"a": "THE IDOLM@STER SHINY COLORS GR@DATE WING 05",
+			"b": "THE IDOLM@STER SHINY COLORS GR@DATE WING 02",
+			"value": 0.9705882352941176
+		},
+		{
+			"a": "a",
+			"b": "a",
+			"value": 1
+		},
+		{
+			"a": "a",
+			"b": "b",
+			"value": 0
+		},
+		{
+			"a": "",
+			"b": "",
+			"value": 0
+		},
+		{
+			"a": "Ｓｏｎｇ（ｆｅａｔ．Ｘ）",
+			"b": "Song",
+			"value": 0.5454545454545454
+		},
+		{
+			"a": "Café",
+			"b": "Cafe",
+			"value": 0.6666666666666666
+		},
+		{
+			"a": "night",
+			"b": "nacht",
+			"value": 0.25
+		},
+		{
+			"a": "Song《TVアニメ「X」オープニングテーマ》",
+			"b": "Song",
+			"value": 0.92
+		},
+		{
+			"a": "歌物語 Special Edition",
+			"b": "歌物語",
+			"value": 0.2222222222222222
+		}
+	],
+	"dice": [
+		{
+			"a": "night",
+			"b": "nacht",
+			"value": 0.25
+		},
+		{
+			"a": "a",
+			"b": "a",
+			"value": 1
+		},
+		{
+			"a": "a",
+			"b": "b",
+			"value": 0
+		},
+		{
+			"a": "",
+			"b": "",
+			"value": 0
+		},
+		{
+			"a": "ab",
+			"b": "ab",
+			"value": 1
+		},
+		{
+			"a": "aaaa",
+			"b": "aa",
+			"value": 0.5
+		},
+		{
+			"a": "hello world",
+			"b": "helloworld",
+			"value": 1
+		},
+		{
+			"a": "流星のパルス",
+			"b": "流星",
+			"value": 0.3333333333333333
+		},
+		{
+			"a": "abab",
+			"b": "baba",
+			"value": 0.6666666666666666
+		}
+	],
+	"artistSim": [
+		{
+			"names": [
+				"米津玄師"
+			],
+			"local": "米津玄師",
+			"value": 1
+		},
+		{
+			"names": [
+				"YOASOBI",
+				"Someone"
+			],
+			"local": "YOASOBI",
+			"value": 1
+		},
+		{
+			"names": [
+				"Various Artists"
+			],
+			"local": "V.A.",
+			"value": 1
+		},
+		{
+			"names": [
+				"Someone"
+			],
+			"local": "Someone feat. Other",
+			"value": 0.95
+		},
+		{
+			"names": [
+				"Other"
+			],
+			"local": "Someone & Other",
+			"value": 0.95
+		},
+		{
+			"names": [
+				"Kenshi Yonezu"
+			],
+			"local": "米津玄師",
+			"value": 0
+		},
+		{
+			"names": [
+				"小松未可子"
+			],
+			"local": "Mikako Komatsu",
+			"value": 0
+		},
+		{
+			"names": [
+				"Ayaka Ohashi"
+			],
+			"local": "Ayaka Ohashi",
+			"value": 1
+		},
+		{
+			"names": [
+				"カズサ(CV:夏吉ゆうこ)"
+			],
+			"local": "夏吉ゆうこ",
+			"value": 0.6153846153846154
+		},
+		{
+			"names": [
+				"夏吉ゆうこ"
+			],
+			"local": "カズサ(CV:夏吉ゆうこ)",
+			"value": 0.6153846153846154
+		},
+		{
+			"names": [
+				"Divermy (MILIA/RARA/RIRI/KONA/YOO)",
+				"電音部"
+			],
+			"local": "Divermy",
+			"value": 0.375
+		},
+		{
+			"names": [
+				"Lia"
+			],
+			"local": "Lia & VISUAL ARTS / Key",
+			"value": 0.95
+		},
+		{
+			"names": [
+				"イルミネーションスターズ"
+			],
+			"local": "illumination STARS",
+			"value": 0
+		},
+		{
+			"names": [
+				"Lyn",
+				"tofubeats"
+			],
+			"local": "目黒将司",
+			"value": 0
+		},
+		{
+			"names": [
+				"物語シリーズ"
+			],
+			"local": "阿良々木月火 (井口裕香)",
+			"value": 0
+		},
+		{
+			"names": [
+				"A"
+			],
+			"local": "A × B",
+			"value": 0.95
+		},
+		{
+			"names": [
+				"Y"
+			],
+			"local": "X vs. Y",
+			"value": 0.95
+		},
+		{
+			"names": [
+				"X"
+			],
+			"local": "X with Y",
+			"value": 0.95
+		},
+		{
+			"names": [
+				""
+			],
+			"local": "X",
+			"value": 0
+		},
+		{
+			"names": [
+				"ＡＢＣ"
+			],
+			"local": "abc",
+			"value": 1
+		},
+		{
+			"names": [
+				"オムニバス"
+			],
+			"local": "Various Artists",
+			"value": 1
+		},
+		{
+			"names": [
+				"b"
+			],
+			"local": "a and b",
+			"value": 0.95
+		},
+		{
+			"names": [
+				"Yowanecity"
+			],
+			"local": "雨宮みやび, yowanecity",
+			"value": 0.95
+		}
+	]
+}

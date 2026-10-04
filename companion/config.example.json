@@ -1,0 +1,14 @@
+{
+	"listen": "127.0.0.1:47611",
+	"allowedOrigins": [
+		"https://spotify-shopping-cart.nkmi.me",
+		"https://spotify-shopping-cart.lo.nkmiusercontent.com:1443"
+	],
+	"sources": [
+		{ "id": "itunes", "label": "iTunes", "type": "itunes-xml", "path": "D:/iTunes_cloud/iTunes Library.xml" },
+		{ "id": "rip", "label": "rip", "type": "directory", "path": "X:/music-rip/library", "extensions": ["flac", "mp3", "m4a", "wav"] }
+	],
+	"exclude": [
+		{ "source": "rip", "pathGlob": "**/SoundCloud/**", "reason": "bootlegs and mashups, not purchasable releases" }
+	]
+}
