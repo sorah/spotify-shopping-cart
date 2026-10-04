@@ -9,6 +9,7 @@ This tool allows user to:
 3. Interact with the loaded playlist by:
    - Open a mora link for each song; Remember opened songs as purchased (in localStorage)
    - Bulk remove remembered purchased songs from the playlist.
+4. Optionally, check the playlist against the user's local music library through a companion app running on their PC, which marks owned songs as purchased and lists uncertain matches for review (see [docs/companion.md](docs/companion.md)).
 
 For a mora link, each link is a redirector that: Search song in mora, do some fuzzy matching, and redirect to the best match mora link. For albums with standard and hi-res versions, the redirector prompts user to choose which version to open.
 

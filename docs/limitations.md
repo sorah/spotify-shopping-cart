@@ -8,6 +8,7 @@ Debug exports of the real app (see [client.md](client.md)) may be in `tmp/spotif
 - Whether `DELETE /playlists/{id}/items` works for Development Mode apps. Community reports mention 403s, but those were on the removed endpoints.
 - Writing playlist descriptions: whether the Web API enforces the 300-character limit (and counts characters or escaped bytes), and whether the set of escaped entities is complete.
 - Whether mora answers requests from Cloudflare's egress IPs. Check with `/mora/redirect?...&debug=1` after deploying.
+- The companion client has only run against `page.route` mocks: not against the real companion, Chrome's local network access prompt, or Firefox.
 
 **Matching limitations**
 - Romanized-artist matches often lack `trackMaterialNo`: the title-only track search is dominated by other artists.

@@ -1,4 +1,5 @@
 import type { Cache } from "swr";
+import { COMPANION_STORAGE_KEY } from "./companionMatch.ts";
 
 export type DebugExport = {
 	exportedAt: string;
@@ -16,6 +17,9 @@ type Environment = {
 	storage: Pick<Storage, "length" | "key" | "getItem">;
 	cache: Pick<Cache, "keys" | "get">;
 };
+
+// Debug exports get shared, so values that grant access to something are left out.
+const REDACTED_STORAGE_KEYS = new Set([COMPANION_STORAGE_KEY]);
 
 function parseStoredValue(raw: string): unknown {
 	try {
@@ -36,7 +40,8 @@ export function buildDebugExport({ now, url, userAgent, storage, cache }: Enviro
 	for (let i = 0; i < storage.length; i++) {
 		const key = storage.key(i);
 		const raw = key === null ? null : storage.getItem(key);
-		if (key !== null && raw !== null) localStorage[key] = parseStoredValue(raw);
+		if (key === null || raw === null) continue;
+		localStorage[key] = REDACTED_STORAGE_KEYS.has(key) ? "[redacted]" : parseStoredValue(raw);
 	}
 
 	const swrCache: DebugExport["swrCache"] = {};

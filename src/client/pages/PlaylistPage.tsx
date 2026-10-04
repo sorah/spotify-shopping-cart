@@ -12,10 +12,13 @@ import type {
 import { ApiRequestError, fetchAllPlaylistItems, postJson, putJson } from "../api.ts";
 import { AlbumGroupCard } from "../components/AlbumGroupCard.tsx";
 import { ApiErrorNotice } from "../components/ApiErrorNotice.tsx";
+import { CompanionBar } from "../components/CompanionBar.tsx";
 import { PurchasedPanel } from "../components/PurchasedPanel.tsx";
 import { RemoveDialog } from "../components/RemoveDialog.tsx";
+import { useCompanionMatches } from "../hooks/useCompanion.ts";
 import { useMe } from "../hooks/useMe.ts";
 import { unmarkTracksPurchased, usePurchased } from "../hooks/usePurchased.ts";
+import { summarizeMatches } from "../lib/companionMatch.ts";
 import { formatDate, pluralize } from "../lib/format.ts";
 import { groupByAlbum } from "../lib/grouping.ts";
 import { purchasedGroups } from "../lib/purchasedStore.ts";
@@ -38,6 +41,12 @@ export default function PlaylistPage() {
 		() => purchasedAlbums.flatMap((group) => group.tracks.map((track) => track.uri)),
 		[purchasedAlbums],
 	);
+	const companion = useCompanionMatches(items.data);
+	const matchSummary = useMemo(
+		() => (companion.matches && items.data ? summarizeMatches(companion.matches, items.data, purchased) : null),
+		[companion.matches, items.data, purchased],
+	);
+	const canLinkMora = companion.status.data?.capabilities.includes("ids.mora") === true;
 
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [isRequesting, setIsRequesting] = useState(false);
@@ -134,6 +143,17 @@ export default function PlaylistPage() {
 				</div>
 			</header>
 
+			{companion.isPaired && (
+				<CompanionBar
+					status={companion.status}
+					summary={matchSummary}
+					isChecking={companion.isChecking}
+					checkError={companion.checkError}
+					markedCount={companion.markedCount}
+					onCheck={companion.check}
+				/>
+			)}
+
 			{items.isLoading || !items.data ? (
 				<p className="loading">Loading songs…</p>
 			) : groups.length === 0 ? (
@@ -142,7 +162,13 @@ export default function PlaylistPage() {
 				<div className="playlist-body">
 					<div className="albums">
 						{groups.map((group) => (
-							<AlbumGroupCard key={group.key} group={group} purchased={purchased} />
+							<AlbumGroupCard
+								key={group.key}
+								group={group}
+								purchased={purchased}
+								localMatches={companion.matches}
+								canLinkMora={canLinkMora}
+							/>
 						))}
 					</div>
 					<PurchasedPanel

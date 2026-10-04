@@ -1,4 +1,3 @@
-import { useSyncExternalStore } from "react";
 import {
 	markPurchased,
 	PURCHASED_STORAGE_KEY,
@@ -6,47 +5,23 @@ import {
 	parsePurchased,
 	unmarkPurchased,
 } from "../lib/purchasedStore.ts";
+import { createLocalStore } from "./localStore.ts";
 
-const listeners = new Set<() => void>();
-let cachedRaw: string | null = null;
-let cachedMap: PurchasedMap = {};
+const store = createLocalStore(PURCHASED_STORAGE_KEY, parsePurchased);
 
-function getSnapshot(): PurchasedMap {
-	const raw = localStorage.getItem(PURCHASED_STORAGE_KEY);
-	if (raw !== cachedRaw) {
-		cachedRaw = raw;
-		cachedMap = parsePurchased(raw);
-	}
-	return cachedMap;
-}
-
-function onStorage(event: StorageEvent) {
-	if (event.key === PURCHASED_STORAGE_KEY || event.key === null) for (const listener of listeners) listener();
-}
-
-function subscribe(listener: () => void) {
-	listeners.add(listener);
-	if (listeners.size === 1) window.addEventListener("storage", onStorage);
-	return () => {
-		listeners.delete(listener);
-		if (listeners.size === 0) window.removeEventListener("storage", onStorage);
-	};
-}
-
-function write(map: PurchasedMap) {
-	localStorage.setItem(PURCHASED_STORAGE_KEY, JSON.stringify(map));
-	for (const listener of listeners) listener();
+export function getPurchased(): PurchasedMap {
+	return store.get();
 }
 
 export function markTracksPurchased(uris: string[]) {
-	write(markPurchased(getSnapshot(), uris, new Date()));
+	store.set(markPurchased(store.get(), uris, new Date()));
 }
 
 export function unmarkTracksPurchased(uris: string[]) {
-	write(unmarkPurchased(getSnapshot(), uris));
+	store.set(unmarkPurchased(store.get(), uris));
 }
 
 // Shared across tabs through the storage event.
 export function usePurchased(): PurchasedMap {
-	return useSyncExternalStore(subscribe, getSnapshot);
+	return store.use();
 }

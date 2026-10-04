@@ -41,6 +41,17 @@ describe("debugExport", () => {
 		});
 	});
 
+	test("redacts the companion pairing token", () => {
+		const result = buildDebugExport({
+			now: new Date("2026-10-05T00:00:00Z"),
+			url: "https://app.test/",
+			userAgent: "test-agent",
+			storage: storage({ "spotify-shopping-cart:companion": '{"token":"secret"}' }),
+			cache: cache({}),
+		});
+		expect(result.localStorage).toEqual({ "spotify-shopping-cart:companion": "[redacted]" });
+	});
+
 	test("exports SWR data and errors without loading flags", () => {
 		const result = buildDebugExport({
 			now: new Date("2026-10-05T00:00:00Z"),

@@ -1,4 +1,5 @@
 import { markTracksPurchased, unmarkTracksPurchased } from "../hooks/usePurchased.ts";
+import { localMatchView, type MatchCache } from "../lib/companionMatch.ts";
 import { formatDate, joinArtists, pluralize } from "../lib/format.ts";
 import type { AlbumGroup } from "../lib/grouping.ts";
 import { isPurchased, type PurchasedMap } from "../lib/purchasedStore.ts";
@@ -7,9 +8,11 @@ import { TrackRow } from "./TrackRow.tsx";
 type Props = {
 	group: AlbumGroup;
 	purchased: PurchasedMap;
+	localMatches: MatchCache | null;
+	canLinkMora: boolean;
 };
 
-export function AlbumGroupCard({ group, purchased }: Props) {
+export function AlbumGroupCard({ group, purchased, localMatches, canLinkMora }: Props) {
 	const albumArtists = joinArtists(group.album.artists);
 	const purchasableUris = group.tracks.filter((track) => !track.isLocal).map((track) => track.uri);
 	const isGroupPurchased =
@@ -53,15 +56,20 @@ export function AlbumGroupCard({ group, purchased }: Props) {
 					))}
 			</header>
 			<ol className="tracks">
-				{group.tracks.map((track) => (
-					<TrackRow
-						key={`${track.uri}:${track.position}`}
-						track={track}
-						shouldShowArtists={joinArtists(track.artists) !== albumArtists}
-						isPurchased={!track.isLocal && isPurchased(purchased, track)}
-						onOpenMora={markGroup}
-					/>
-				))}
+				{group.tracks.map((track) => {
+					const isTrackPurchased = !track.isLocal && isPurchased(purchased, track);
+					return (
+						<TrackRow
+							key={`${track.uri}:${track.position}`}
+							track={track}
+							shouldShowArtists={joinArtists(track.artists) !== albumArtists}
+							isPurchased={isTrackPurchased}
+							localMatch={localMatches && localMatchView(localMatches, track, isTrackPurchased)}
+							canLinkMora={canLinkMora}
+							onOpenMora={markGroup}
+						/>
+					);
+				})}
 			</ol>
 		</article>
 	);

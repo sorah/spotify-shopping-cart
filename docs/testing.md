@@ -15,3 +15,5 @@
 - **UI checks:** done manually with `playwright-cli` against the dev server, using `page.route` mocks for `/api/*` (and `context.route` for `/mora/redirect`, which opens in a new tab).
   - A debug export from the real app (see [client.md](client.md)) gives realistic `/api/*` bodies and purchased marks to mock with. Its items entry is the concatenation of all pages, so serve it as one `{ items, nextOffset: null, total }` page.
   - The user may have dropped exports into `tmp/spotify-shopping-cart-debug-*.json`. Look there before writing mock data by hand.
+  - Mock the companion with `page.route("http://127.0.0.1:47611/**", ...)`. Answer `OPTIONS` with 204 and send `Access-Control-Allow-Origin` and `Access-Control-Allow-Headers: Authorization, Content-Type` on every response, or the browser rejects the cross-origin fetch.
+  - Route handlers run without some globals such as `URL`; a handler that throws leaves the request pending.

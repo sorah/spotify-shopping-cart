@@ -1,15 +1,19 @@
 import type { PlaylistTrack } from "../../shared/types.ts";
+import type { LocalMatchView } from "../lib/companionMatch.ts";
 import { formatDate, joinArtists } from "../lib/format.ts";
 import { moraRedirectUrl } from "../lib/mora.ts";
+import { LocalMatchNote } from "./LocalMatchNote.tsx";
 
 type Props = {
 	track: PlaylistTrack;
 	shouldShowArtists: boolean;
 	isPurchased: boolean;
+	localMatch: LocalMatchView | null;
+	canLinkMora: boolean;
 	onOpenMora: () => void;
 };
 
-export function TrackRow({ track, shouldShowArtists, isPurchased, onOpenMora }: Props) {
+export function TrackRow({ track, shouldShowArtists, isPurchased, localMatch, canLinkMora, onOpenMora }: Props) {
 	return (
 		<li className="track" data-purchased={isPurchased || undefined}>
 			<div className="track-main">
@@ -22,6 +26,7 @@ export function TrackRow({ track, shouldShowArtists, isPurchased, onOpenMora }: 
 					{track.name}
 				</span>
 				{shouldShowArtists && <span className="track-artists">{joinArtists(track.artists)}</span>}
+				{localMatch && <LocalMatchNote track={track} view={localMatch} canLinkMora={canLinkMora} />}
 			</div>
 			<time className="track-added" dateTime={track.addedAt ?? undefined}>
 				{formatDate(track.addedAt)}

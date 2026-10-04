@@ -5,7 +5,7 @@ This is the implementation reference for future work on this repository. [README
 ## Architecture
 
 ```
-Browser (React SPA)
+Browser (React SPA) ── http://127.0.0.1:47611  (optional local library companion, see docs/companion.md)
   │  same origin
   ▼
 Cloudflare Worker (Hono) ── static assets (Vite client build, SPA fallback)
@@ -17,7 +17,7 @@ Cloudflare Worker (Hono) ── static assets (Vite client build, SPA fallback)
 A single Worker serves both the SPA assets and the dynamic routes. There is no database and no server-side state:
 
 - Spotify tokens live in an encrypted cookie.
-- "Purchased" marks live in the browser's localStorage.
+- "Purchased" marks, the companion pairing token and its match results live in the browser's localStorage.
 - The last shopping record lives in the playlist's description on Spotify.
 
 ## Repository layout
@@ -47,6 +47,7 @@ Read the ones that cover the area you are working on.
 | [docs/spotify.md](docs/spotify.md) | Spotify Web API facts: Development Mode limits, endpoints, tokens, normalization | calling Spotify or changing how playlist items are fetched or removed |
 | [docs/mora.md](docs/mora.md) | mora search API facts, the `/mora/redirect` request and the matching algorithm | changing mora search, matching thresholds or the redirector |
 | [docs/client.md](docs/client.md) | SPA routing and data fetching, grouping, purchased marks, removal, styling, CSP | changing anything under `src/client/` or `public/_headers` |
+| [docs/companion.md](docs/companion.md) | The local library companion: protocol v1, what the local libraries look like, matching rules, and the SPA's check and review flow | changing the companion client, `PlaylistTrack` fields it sends, or the CSP's `connect-src` |
 | [docs/testing.md](docs/testing.md) | Test layout, helpers, recorded mora fixtures, manual UI checks | writing tests or re-recording fixtures |
 | [docs/limitations.md](docs/limitations.md) | Unverified behaviour, known limitations, possible next steps | planning new work or debugging against real Spotify/mora |
 

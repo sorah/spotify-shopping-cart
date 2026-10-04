@@ -29,11 +29,15 @@
 - If any song was removed and the user owns the playlist, the client records the shopping with `PUT /api/playlists/:id/last-shopping` and puts the response into the playlist cache without revalidating. A failure there is only logged, because the songs are already gone.
 - The playlist header shows the last shopping date and song count.
 
+**Local library companion (`companion.ts`, `hooks/useCompanion.ts`, `lib/companion*.ts`, `components/Companion*.tsx`, `components/LocalMatchNote.tsx`)**
+- Pairing, the status line, "Check local library" and the per-track review notes are described in [companion.md](companion.md#spa).
+- `hooks/localStore.ts` holds the localStorage-backed store shared by the purchased marks and the companion's pairing and results.
+
 **Debug export (`lib/debugExport.ts`, `components/DebugExportButton.tsx`)**
 - The site footer's "Export debug data" button downloads a JSON file with every localStorage entry (JSON values parsed) and every SWR cache entry's `data` and `error`, plus the page URL and user agent.
 - SWR cache entries are keyed by SWR's serialized key: `/api/me`, `/api/playlists/<id>`, and `@"playlist-items","<id>",` for the concatenated items pages.
 - `Error` objects are exported with `name`, `message` and their own fields such as `status` and `code`.
-- The session cookie is never read, so tokens never end up in the file.
+- The session cookie is never read, and the companion pairing (`spotify-shopping-cart:companion`) is exported as `"[redacted]"`, so tokens never end up in the file.
 
 **Styling**
 - One plain stylesheet, `style.css`, light theme only. Don't add dark mode.
@@ -43,6 +47,6 @@
 - From 960px up, the playlist page drops `.site-main`'s bottom padding and the panel's `max-height` leaves `--footer-height` below it, so at the end of the page the footer fills exactly the panel's bottom gap and the panel doesn't slide under the header.
 
 **CSP**
-- `public/_headers` sets a CSP for asset responses: `script-src 'self'`, `style-src 'self'`, images from `*.scdn.co` and `*.spotifycdn.com`.
+- `public/_headers` sets a CSP for asset responses: `script-src 'self'`, `style-src 'self'`, images from `*.scdn.co` and `*.spotifycdn.com`, and `connect-src` for the companion at `http://127.0.0.1:47611`.
 - `cf deploy` uploads it with the build. The Vite dev server ignores it, so it never breaks HMR.
 - Avoid inline `style` attributes and inline scripts. Add any new image or CDN host to the CSP.
