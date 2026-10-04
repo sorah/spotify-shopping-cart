@@ -39,10 +39,12 @@ Companion  http://127.0.0.1:47611   (Rust, companion/, on the music PC)
 - CORS allows exactly the two origins above, methods `GET, POST`, and headers `Authorization, Content-Type`. The companion also answers the legacy PNA preflight header with `Access-Control-Allow-Private-Network: true`; current Chrome no longer uses it, but it's harmless.
 - The companion generates a random token on first run and prints it in its console at every start. It also prints it when an allowlisted origin sends a request without a valid token, at most once every 10 s. The SPA stores the token in localStorage `spotify-shopping-cart:companion` as `{token}` and redacts it from debug exports.
 - The companion rejects any request whose `Origin` isn't allowlisted or whose token doesn't match, so no other website can probe the library.
+- The SPA can't authenticate the companion. While it isn't running, another local process listening on 127.0.0.1:47611 would receive the token.
 
 ## Running
 
 - `ssc-companion serve` starts the server (`companion\target\release\ssc-companion.exe` on the music PC); `ssc-companion token` prints the pairing token.
+- `ssc-companion token --rotate` replaces the token; a running `serve` keeps the old one until restarted.
 - The first start scans for about 60 s. Until the first index is ready, `/v1/match` answers 503 `indexing` and `/v1/status` shows the sources `indexing` with progress. Later starts load the index from cache in about 2 s.
 - The first iTunes Lookup run then takes about 3 minutes. When it finishes, the index is republished with a new `libraryRevision`.
 - Library changes are picked up by polling every 5 minutes.
@@ -169,7 +171,7 @@ type CompanionStatus = {
 
 ### `POST /v1/match`
 
-Takes at most 500 tracks per request. The SPA dedupes by URI, drops local files, and chunks.
+Takes at most 500 tracks and a 2 MiB body per request; 500 real tracks are about 300 KB. The SPA dedupes by URI, drops local files, and chunks. The companion runs at most 2 match requests at once and queues the rest. Matching uses only the title, the album and the first 16 artists, each cut to 512 characters after NFKC.
 
 ```ts
 type MatchRequest = {
@@ -231,8 +233,12 @@ type LocalMatch = {
 
 **Field values from the companion**
 - `artists` has exactly one element, the display artist.
-- `id` is the iTunes Persistent ID for iTunes entries, and a stable 16-hex-digit hash for directory entries.
-- `format` is one of `AAC`, `MP3`, `ALAC`, `AIFF`, `WAV` and `FLAC`.
+- `id` is the iTunes Persistent ID for iTunes entries, and a 16-hex-digit hash for directory entries.
+  - A Persistent ID changes only when the track is removed and re-imported.
+  - A directory ID hashes the source id and the relative path with a per-install key (the `id-key` file, which survives deleting `cache.sqlite3`). Moving or renaming the file, changing the source id, or deleting `id-key` changes it.
+  - Dismissals key on these IDs, so a dismissed match can return through a duplicate copy of the same song.
+- `matches[0]` of an `owned` result is the entry that decided the verdict, such as the ISRC hit, even when another entry scores higher.
+- `format` for iTunes entries is a label derived from `Kind`: `AAC`, `MP3`, `ALAC`, `AIFF`, `WAV` or `other`. Directory entries report their file extension (`FLAC`, `MP3`, `M4A`, `WAV`).
 - `location` is `<source label> · <artist> / <album>`, from tags only.
 
 **Errors** have the body `{protocol: 1, code, message?}`, with CORS headers on every response to an allowlisted origin.
