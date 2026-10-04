@@ -16,7 +16,7 @@ export function companionErrorMessage(error: Error): string {
 	if (!(error instanceof CompanionRequestError)) return "Something went wrong while talking to the companion.";
 	switch (error.code) {
 		case "unpaired":
-			return "The companion didn't accept the pairing token. Pair again with the token it printed.";
+			return "The companion didn't accept the pairing token. Pair again with the one shown in its console window.";
 		case "origin_not_allowed":
 			return `The companion doesn't accept requests from ${location.origin}.`;
 		case "protocol_mismatch":

@@ -147,6 +147,7 @@ export default function PlaylistPage() {
 				<CompanionBar
 					status={companion.status}
 					summary={matchSummary}
+					isStale={companion.isStale}
 					isChecking={companion.isChecking}
 					checkError={companion.checkError}
 					markedCount={companion.markedCount}

@@ -9,13 +9,14 @@ import { CompanionStatusLine, companionErrorMessage } from "./CompanionStatusLin
 type Props = {
 	status: SWRResponse<CompanionStatus, Error>;
 	summary: MatchSummary | null;
+	isStale: boolean;
 	isChecking: boolean;
 	checkError: Error | undefined;
 	markedCount: number | undefined;
 	onCheck: () => void;
 };
 
-export function CompanionBar({ status, summary, isChecking, checkError, markedCount, onCheck }: Props) {
+export function CompanionBar({ status, summary, isStale, isChecking, checkError, markedCount, onCheck }: Props) {
 	const reviewIndex = useRef(0);
 	// Review notes are spread across the album list, so each click cycles to the next one.
 	const scrollToNextReview = () => {
@@ -49,6 +50,9 @@ export function CompanionBar({ status, summary, isChecking, checkError, markedCo
 							<> Marked {formatCount(markedCount, "song")} as purchased.</>
 						)}
 					</p>
+				)}
+				{isStale && !isChecking && (
+					<p className="companion-summary">Your library changed since the last check. Check again to update.</p>
 				)}
 				{checkError && (
 					<p className="field-error" role="alert">

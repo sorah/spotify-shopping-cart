@@ -890,6 +890,11 @@ p {
 	}
 }
 
+.companion-hint {
+	color: var(--color-muted);
+	font-size: 13px;
+}
+
 .companion-unpair {
 	margin-right: auto;
 	color: var(--color-danger);

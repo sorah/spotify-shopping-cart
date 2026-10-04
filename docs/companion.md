@@ -1,6 +1,6 @@
 # Local library companion
 
-> **Status:** the protocol is agreed, and the SPA and Worker side is implemented and checked against a mock companion. The companion itself isn't implemented yet. It runs on the music PC, while the SPA and Worker are developed on another machine.
+> **Status:** the SPA and Worker side is in this repository and has run only against a mock companion. The companion (Rust) is built and verified on the music PC, but isn't in this repository yet. The SPA and Worker are developed on another machine.
 
 ## Goal
 
@@ -37,8 +37,16 @@ Companion  http://127.0.0.1:47611   (Rust, companion/, on the music PC)
 
 **CORS and auth**
 - CORS allows exactly the two origins above, methods `GET, POST`, and headers `Authorization, Content-Type`. The companion also answers the legacy PNA preflight header with `Access-Control-Allow-Private-Network: true`; current Chrome no longer uses it, but it's harmless.
-- The companion prints a random token on first run. The SPA stores it in localStorage `spotify-shopping-cart:companion` as `{token}` and redacts it from debug exports.
+- The companion generates a random token on first run and prints it in its console at every start. It also prints it when an allowlisted origin sends a request without a valid token, at most once every 10 s. The SPA stores the token in localStorage `spotify-shopping-cart:companion` as `{token}` and redacts it from debug exports.
 - The companion rejects any request whose `Origin` isn't allowlisted or whose token doesn't match, so no other website can probe the library.
+
+## Running
+
+- `ssc-companion serve` starts the server (`companion\target\release\ssc-companion.exe` on the music PC); `ssc-companion token` prints the pairing token.
+- The first start scans for about 60 s. Until the first index is ready, `/v1/match` answers 503 `indexing` and `/v1/status` shows the sources `indexing` with progress. Later starts load the index from cache in about 2 s.
+- The first iTunes Lookup run then takes about 3 minutes. When it finishes, the index is republished with a new `libraryRevision`.
+- Library changes are picked up by polling every 5 minutes.
+- `libraryRevision` is a content hash, so a restart with an unchanged library keeps it and the SPA's cached results stay valid.
 
 ## Companion configuration
 
@@ -221,16 +229,24 @@ type LocalMatch = {
 };
 ```
 
-**Errors** have the body `{protocol: 1, code, message?}`.
+**Field values from the companion**
+- `artists` has exactly one element, the display artist.
+- `id` is the iTunes Persistent ID for iTunes entries, and a stable 16-hex-digit hash for directory entries.
+- `format` is one of `AAC`, `MP3`, `ALAC`, `AIFF`, `WAV` and `FLAC`.
+- `location` is `<source label> · <artist> / <album>`, from tags only.
+
+**Errors** have the body `{protocol: 1, code, message?}`, with CORS headers on every response to an allowlisted origin.
 
 | Status | `code` | Client behaviour |
 |---|---|---|
 | network failure | – | quiet "companion not running" state |
 | 400 | `bad_request` | client bug; malformed JSON |
-| 401 | `unpaired` | ask for the token again |
-| 403 | `origin_not_allowed` | configuration error |
+| 401 | `unpaired` | ask for the token again; the companion prints it in its console |
+| 403 | `origin_not_allowed` | configuration error; sent without CORS headers, so the SPA sees a network failure |
+| 404 | `not_found` | unknown path |
 | 409 | `protocol_mismatch` | ask the user to update |
 | 413 | `too_many_tracks` | client bug; chunk to 500 |
+| 500 | `internal_error` | companion bug |
 | 503 | `indexing` | poll `/v1/status` until `ready` |
 
 ## Matching
@@ -282,6 +298,7 @@ The code is in `src/client/`: `companion.ts` (HTTP), `lib/companionMatch.ts` (ch
 
 **Pairing**
 - "Local library companion" in the site footer (shown when logged in) and "Settings" in the playlist page's Local library card open the same dialog. It takes the token, shows the companion's status, and can unpair.
+- While no token is stored, opening the dialog sends `GET /v1/status` without `Authorization`, which makes the companion print its token, and tells the user to copy it from the console window. The probe needs the browser to run on the same machine as the companion.
 - The status line is mounted only while the dialog is open or the card is shown, so pages without the card never trigger the local network permission prompt.
 
 **Status**
@@ -298,7 +315,7 @@ The code is in `src/client/`: `companion.ts` (HTTP), `lib/companionMatch.ts` (ch
 - **`owned`:** tracks returned by the companion during this check, and not marked yet, are marked purchased one by one. Never expand to the album group as the mora click does: owning one song says nothing about the rest. Cached results aren't applied again, so an Undo in the purchased panel sticks until the library revision changes. The track row shows an "In your library" badge.
 - **`probable`:** the track row shows the best match: title and artists, `location`, ownership, format, duration difference and `matchedBy`, plus a link to the mora package page when the status has the `ids.mora` capability. "Mark purchased" marks the track; "Not this one" stores a dismissal keyed by `(uri, match.id)`. A different best match after a re-index shows up again.
 - **`absent`:** nothing.
-- Results from another library revision than the current status are hidden. When the companion isn't reachable, the cached results are still shown.
+- Results from another library revision than the current status are hidden, and the card asks for a new check. The status is refetched on window focus to notice re-indexes. When the companion isn't reachable, the cached results are still shown.
 - The card's summary reads "Found 150 owned, 30 to review in 699 songs". "30 to review" cycles through the review notes on the page.
 
 ## Worker

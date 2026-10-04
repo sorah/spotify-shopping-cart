@@ -1,4 +1,5 @@
 import { type FormEvent, type ReactNode, useEffect, useId, useRef, useState } from "react";
+import { probeCompanion } from "../companion.ts";
 import { pairCompanion, unpairCompanion, useCompanionPairing } from "../hooks/useCompanion.ts";
 import { CompanionStatusLine } from "./CompanionStatusLine.tsx";
 
@@ -16,6 +17,41 @@ export function CompanionSettingsButton({ className, children }: Props) {
 			</button>
 			<CompanionDialog isOpen={isOpen} onClose={() => setIsOpen(false)} />
 		</>
+	);
+}
+
+type ProbeState = "probing" | "reachable" | "unreachable";
+
+function PairingProbe() {
+	const [state, setState] = useState<ProbeState>("probing");
+	const [attempt, setAttempt] = useState(0);
+
+	useEffect(() => {
+		let isCurrent = true;
+		setState("probing");
+		void probeCompanion().then((isReachable) => {
+			if (isCurrent) setState(isReachable ? "reachable" : "unreachable");
+		});
+		return () => {
+			isCurrent = false;
+		};
+	}, [attempt]);
+
+	return (
+		<p className="companion-hint" role="status">
+			{state === "probing" && "Asking the companion for a pairing token…"}
+			{state === "reachable" && "The companion printed a pairing token in its console window. Copy it here."}
+			{state === "unreachable" && (
+				<>
+					Can't reach the companion. Start it on this computer and allow local network access if the browser asks,
+					then{" "}
+					<button type="button" className="link-button" onClick={() => setAttempt((n) => n + 1)}>
+						try again
+					</button>
+					.
+				</>
+			)}
+		</p>
 	);
 }
 
@@ -44,7 +80,7 @@ function CompanionDialog({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
 			<h2 id={`${id}-title`}>Local library companion</h2>
 			<p>
 				The companion runs on the computer with your music library and finds the songs you already own. Paste the
-				pairing token it printed when it first started.
+				pairing token shown in its console window.
 			</p>
 			{/* Mounted only while open, so the home page never prompts for local network access. */}
 			{isOpen && pairing && <CompanionStatusLine />}
@@ -58,6 +94,7 @@ function CompanionDialog({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
 					value={token}
 					onChange={(event) => setToken(event.target.value)}
 				/>
+				{isOpen && !pairing && <PairingProbe />}
 				<div className="dialog-actions">
 					{pairing && (
 						<button type="button" className="button button-quiet companion-unpair" onClick={unpairCompanion}>

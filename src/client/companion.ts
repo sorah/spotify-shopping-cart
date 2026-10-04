@@ -43,6 +43,16 @@ async function companionFetch<T>(token: string, path: string, init: RequestInit 
 	throw new CompanionRequestError(response.status, body?.code, body?.message);
 }
 
+// Sent without a token, so the companion prints its pairing token in its console. Resolves to whether it answered.
+export async function probeCompanion(): Promise<boolean> {
+	try {
+		await fetch(`${COMPANION_ORIGIN}/v1/status`, { cache: "no-store" });
+		return true;
+	} catch {
+		return false;
+	}
+}
+
 export function fetchCompanionStatus(token: string): Promise<CompanionStatus> {
 	return companionFetch(token, "/v1/status");
 }

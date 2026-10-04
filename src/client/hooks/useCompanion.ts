@@ -61,6 +61,8 @@ export function useCompanionStatus() {
 		() => fetchCompanionStatus(currentToken()),
 		{
 			shouldRetryOnError: false,
+			// A loopback request costs no Spotify quota, and the library may have been re-indexed meanwhile.
+			revalidateOnFocus: true,
 			refreshInterval: (status) => (status && isIndexing(status) ? INDEXING_POLL_INTERVAL_MS : 0),
 		},
 	);
@@ -74,9 +76,9 @@ export function useCompanionMatches(items: PlaylistTrack[] | undefined) {
 	const [checkError, setCheckError] = useState<Error>();
 	const [markedCount, setMarkedCount] = useState<number>();
 
+	const isStale = cache !== null && status.data !== undefined && status.data.libraryRevision !== cache.libraryRevision;
 	// Without a status, the last results are still the best information available.
-	const matches: MatchCache | null =
-		pairing && cache && (!status.data || status.data.libraryRevision === cache.libraryRevision) ? cache : null;
+	const matches: MatchCache | null = pairing && cache && !isStale ? cache : null;
 
 	const check = async () => {
 		if (isChecking || !items) return;
@@ -103,5 +105,5 @@ export function useCompanionMatches(items: PlaylistTrack[] | undefined) {
 		}
 	};
 
-	return { isPaired: pairing !== null, status, matches, isChecking, checkError, markedCount, check };
+	return { isPaired: pairing !== null, status, matches, isStale, isChecking, checkError, markedCount, check };
 }
