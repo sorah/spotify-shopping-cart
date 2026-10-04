@@ -1,0 +1,1659 @@
+{
+	"02 Ado Ado's Best Adobum": {
+		"data": {
+			"packageResult": {
+				"resultCode": "EM0305200",
+				"total": 0,
+				"list": []
+			}
+		}
+	},
+	"02 Ado Adoのベストアドバム": {
+		"data": {
+			"packageResult": {
+				"resultCode": "SM0305000",
+				"total": 3,
+				"list": [
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "Adoのベストアドバム",
+						"packageId": "00602478008511",
+						"labelCode": "43000006",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 40,
+						"startDate": "2025/04/09 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "Adoのベストアドバム",
+						"packageId": "00602478008528",
+						"labelCode": "43000006",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"packageTrack": 40,
+						"startDate": "2025/04/09 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "Adoのベストアドバム",
+						"packageId": "00602478008511_L",
+						"labelCode": "43000006",
+						"mediaFormatNo": 15,
+						"samplingFreq": 44100,
+						"bitPerSample": "16",
+						"packageTrack": 40,
+						"startDate": "2025/04/09 00:00:00"
+					}
+				]
+			}
+		}
+	},
+	"02 Ado うっせぇわ": {
+		"data": {
+			"packageResult": {
+				"resultCode": "SM0305000",
+				"total": 10,
+				"list": [
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "うっせぇわ",
+						"packageId": "00602435205861",
+						"labelCode": "43000006",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2020/10/23 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "うっせぇわ",
+						"packageId": "00602438561094",
+						"labelCode": "43000006",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"packageTrack": 1,
+						"startDate": "2021/07/02 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "うっせぇわ (Giga Remix)",
+						"packageId": "00602435737300",
+						"labelCode": "43000006",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2021/02/05 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "うっせぇわ (Lyric Video)",
+						"packageId": "00602435322858",
+						"labelCode": "43000006",
+						"mediaFormatNo": 11,
+						"samplingFreq": 48000,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2020/12/02 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "うっせぇわ",
+						"packageId": "00602435205861_L",
+						"labelCode": "43000006",
+						"mediaFormatNo": 15,
+						"samplingFreq": 44100,
+						"bitPerSample": "16",
+						"packageTrack": 1,
+						"startDate": "2020/10/23 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "うっせぇわ (Giga Remix)",
+						"packageId": "00602435737300_L",
+						"labelCode": "43000006",
+						"mediaFormatNo": 15,
+						"samplingFreq": 44100,
+						"bitPerSample": "16",
+						"packageTrack": 1,
+						"startDate": "2021/02/05 00:00:00"
+					},
+					{
+						"artistName": "サウンドワークス",
+						"artistNameKana": "サウンドワークス",
+						"packageTitle": "うっせぇわ(原曲:Ado)[ORIGINAL COVER]",
+						"packageId": "4549276799455_F",
+						"labelCode": "43000092",
+						"mediaFormatNo": 12,
+						"samplingFreq": 96000,
+						"bitPerSample": "24",
+						"packageTrack": 1,
+						"startDate": "2021/02/04 00:00:00"
+					},
+					{
+						"artistName": "サウンドワークス",
+						"artistNameKana": "サウンドワークス",
+						"packageTitle": "うっせぇわ(原曲:Ado)[ORIGINAL COVER]",
+						"packageId": "4549276799455",
+						"labelCode": "43000092",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2021/02/04 00:00:00"
+					},
+					{
+						"artistName": "オルゴールミュージック",
+						"artistNameKana": "オルゴールミュージック",
+						"packageTitle": "うっせぇわ (Cover) [オリジナル歌手：Ado]",
+						"packageId": "TCJPR0000906143",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2022/05/19 00:00:00"
+					},
+					{
+						"artistName": "カラオケまねきねこ",
+						"artistNameKana": "カラオケマネキネコ",
+						"packageTitle": "うっせぇわ(カラオケ)[Ado]",
+						"packageId": "PA00161315-0-1",
+						"labelCode": "43000033",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 12,
+						"startDate": "2024/08/28 00:00:00"
+					}
+				]
+			}
+		}
+	},
+	"02 Ado's Best Adobum": {
+		"data": {
+			"packageResult": {
+				"resultCode": "EM0305200",
+				"total": 0,
+				"list": []
+			}
+		}
+	},
+	"02 Kenshi Yonezu Lemon": {
+		"data": {
+			"packageResult": {
+				"resultCode": "EM0305200",
+				"total": 0,
+				"list": []
+			}
+		}
+	},
+	"02 Kenshi Yonezu STRAY SHEEP": {
+		"data": {
+			"packageResult": {
+				"resultCode": "EM0305200",
+				"total": 0,
+				"list": []
+			}
+		}
+	},
+	"02 Lemon": {
+		"data": {
+			"packageResult": {
+				"resultCode": "SM0305000",
+				"total": 1471,
+				"list": [
+					{
+						"artistName": "ma-su",
+						"artistNameKana": "マース",
+						"packageTitle": "Lemon Grove Sway",
+						"packageId": "TCJPR0001982964",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2026/10/01 00:00:00"
+					},
+					{
+						"artistName": "Lemon Session",
+						"artistNameKana": "ダミーデータ",
+						"packageTitle": "The Book of Dreams",
+						"packageId": "SYM-4580282242191",
+						"labelCode": "43000071",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 30,
+						"startDate": "2026/09/23 00:00:00"
+					},
+					{
+						"artistName": "Amberlune",
+						"artistNameKana": "アンバールーン",
+						"packageTitle": "Lemon Courtyard",
+						"packageId": "4570257310321",
+						"labelCode": "43000186",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2026/10/05 00:00:00"
+					},
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "Lemon",
+						"packageId": "SRCL09749B00Z",
+						"labelCode": "43000087",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 3,
+						"startDate": "2018/03/14 00:00:00"
+					},
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "Lemon",
+						"packageId": "SRCL09749B00Z_48",
+						"labelCode": "43000100",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"packageTrack": 3,
+						"startDate": "2022/05/12 00:00:00"
+					},
+					{
+						"artistName": "飯島真理",
+						"artistNameKana": "イイジママリ",
+						"packageTitle": "Miss Lemon",
+						"packageId": "825646954155",
+						"labelCode": "43000008",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 10,
+						"startDate": "2013/11/25 00:00:00"
+					},
+					{
+						"artistName": "東方神起",
+						"artistNameKana": "トウホウシンキ",
+						"packageTitle": "Lime & Lemon",
+						"packageId": "ANTCD-A0000010529",
+						"labelCode": "43000002",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 4,
+						"startDate": "2023/06/28 00:00:00"
+					},
+					{
+						"artistName": "東方神起",
+						"artistNameKana": "トウホウシンキ",
+						"packageTitle": "Lime & Lemon",
+						"packageId": "ANTCD-A0000010327",
+						"labelCode": "43000002",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2023/06/12 00:00:00"
+					},
+					{
+						"artistName": "The Birthday",
+						"artistNameKana": "バースデイ",
+						"packageTitle": "LEMON",
+						"packageId": "00600406378071",
+						"labelCode": "43000006",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 2,
+						"startDate": "2013/12/04 00:00:00"
+					},
+					{
+						"artistName": "Hearts2Hearts",
+						"artistNameKana": "ハーツトゥハーツ",
+						"packageTitle": "Lemon Tang - The 2nd Mini Album",
+						"packageId": "00888735955174",
+						"labelCode": "43000006",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 6,
+						"startDate": "2026/06/22 18:00:00"
+					},
+					{
+						"artistName": "Shocking Lemon",
+						"artistNameKana": "ショッキングレモン",
+						"packageTitle": "Inner Light",
+						"packageId": "4988021821438",
+						"labelCode": "43000011",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 3,
+						"startDate": "2024/10/23 00:00:00"
+					},
+					{
+						"artistName": "シーナ&ロケッツ",
+						"artistNameKana": "シーナアンドザロケッツ",
+						"packageTitle": "LEMON TEA 12\"",
+						"packageId": "VICL-79001",
+						"labelCode": "43000005",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 3,
+						"startDate": "2013/07/02 00:00:00"
+					}
+				]
+			}
+		}
+	},
+	"02 Nobody Qwxz Nothing": {
+		"data": {
+			"packageResult": {
+				"resultCode": "EM0305200",
+				"total": 0,
+				"list": []
+			}
+		}
+	},
+	"02 Nothing": {
+		"data": {
+			"packageResult": {
+				"resultCode": "SM0305000",
+				"total": 4917,
+				"list": [
+					{
+						"artistName": "Nothing But Thieves",
+						"artistNameKana": "ナッシングバットシーヴス",
+						"packageTitle": "Stray Dogs",
+						"packageId": "G0100057713458",
+						"labelCode": "43000087",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 12,
+						"startDate": "2026/09/25 00:00:00"
+					},
+					{
+						"artistName": "Red Eye",
+						"artistNameKana": "レッドアイ",
+						"packageTitle": "Nothing holds me down (feat. NORIKIYO)",
+						"packageId": "TCJPR0001960218_hires",
+						"labelCode": "43000074",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"packageTrack": 1,
+						"startDate": "2026/09/23 00:00:00"
+					},
+					{
+						"artistName": "Nothing But Thieves",
+						"artistNameKana": "ナッシングバットシーヴス",
+						"packageTitle": "Stray Dogs",
+						"packageId": "G0100057713458_96",
+						"labelCode": "43000100",
+						"mediaFormatNo": 12,
+						"samplingFreq": 96000,
+						"bitPerSample": "24",
+						"packageTrack": 12,
+						"startDate": "2026/09/25 00:00:00"
+					},
+					{
+						"artistName": "Nothing But Thieves",
+						"artistNameKana": "ナッシングバットシーヴス",
+						"packageTitle": "Stray Dogs",
+						"packageId": "G0100057713458",
+						"labelCode": "43000188",
+						"mediaFormatNo": 15,
+						"samplingFreq": 44100,
+						"bitPerSample": "16",
+						"packageTrack": 12,
+						"startDate": "2026/09/25 00:00:00"
+					},
+					{
+						"artistName": "BUNT. & RØAM",
+						"artistNameKana": "　",
+						"packageTitle": "Nothing Lasts Forever",
+						"packageId": "G010005971144L",
+						"labelCode": "43000087",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2026/09/25 00:00:00"
+					},
+					{
+						"artistName": "Red Eye",
+						"artistNameKana": "レッドアイ",
+						"packageTitle": "Nothing holds me down (feat. NORIKIYO)",
+						"packageId": "TCJPR0001960218",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2026/09/23 00:00:00"
+					},
+					{
+						"artistName": "MossMoon",
+						"artistNameKana": "モスムーン",
+						"packageTitle": "Nothing",
+						"packageId": "TCJPR0001918086",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2026/09/23 00:00:00"
+					},
+					{
+						"artistName": "MIDNIGHT CITY FM",
+						"artistNameKana": "ミッドナイトシティーエフエム",
+						"packageTitle": "NOTHING ELSE (original mix)",
+						"packageId": "TCJPR0001955262",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2026/09/27 00:00:00"
+					},
+					{
+						"artistName": "ハートさん",
+						"artistNameKana": "ハートサン",
+						"packageTitle": "NOTHING STAYS FOREVER",
+						"packageId": "TCJPR0001973660",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2026/10/04 00:00:00"
+					},
+					{
+						"artistName": "NOXVEIL",
+						"artistNameKana": "ノックスヴェイル",
+						"packageTitle": "nothing left to hide",
+						"packageId": "TCJPR0001964392",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 5,
+						"startDate": "2026/09/30 00:00:00"
+					},
+					{
+						"artistName": "NOSTALGIC MUSIC AI",
+						"artistNameKana": "ノスタルジックミュージックエーアイ",
+						"packageTitle": "NOTHING SPECIAL",
+						"packageId": "TCJPR0001944128",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 14,
+						"startDate": "2026/10/03 00:00:00"
+					},
+					{
+						"artistName": "Negi0723",
+						"artistNameKana": "ネギ",
+						"packageTitle": "Nothing happened tonight, nothing",
+						"packageId": "TCJPR0001971611",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2026/09/24 00:00:00"
+					}
+				]
+			}
+		}
+	},
+	"02 STRAY SHEEP": {
+		"data": {
+			"packageResult": {
+				"resultCode": "SM0305000",
+				"total": 42,
+				"list": [
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "STRAY SHEEP",
+						"packageId": "SECL02598B00Z",
+						"labelCode": "43000087",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 15,
+						"startDate": "2020/08/05 00:00:00"
+					},
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "STRAY SHEEP",
+						"packageId": "SEXX02051B00Z_48",
+						"labelCode": "43000100",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"packageTrack": 15,
+						"startDate": "2020/08/05 00:00:00"
+					},
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "STRAY SHEEP",
+						"packageId": "SECL02598B00Z",
+						"labelCode": "43000188",
+						"mediaFormatNo": 15,
+						"samplingFreq": 44100,
+						"bitPerSample": "16",
+						"packageTrack": 15,
+						"startDate": "2020/08/05 00:00:00"
+					},
+					{
+						"artistName": "一色あかね (CV:佐倉綾音) & 四宮ひまわり (CV:内田彩)",
+						"artistNameKana": "イッシキアカネサクラアヤネアンドシノミヤヒマワリウチダアヤ",
+						"packageTitle": "Stray Sheep Story -TV Size Version -1分29秒- (ビビッドレッド・オペレーション)",
+						"packageId": "ANXX00377B00Z",
+						"labelCode": "43000087",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2013/02/02 00:00:00"
+					},
+					{
+						"artistName": "STRAY SHEEP CLAYMORE",
+						"artistNameKana": "ストレイシープクレイモア",
+						"packageTitle": "Don't cry any more",
+						"packageId": "TCJPR0001119234",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2024/01/01 00:00:00"
+					},
+					{
+						"artistName": "STRAY SHEEP CLAYMORE",
+						"artistNameKana": "ストレイシープクレイモア",
+						"packageTitle": "TRINITY",
+						"packageId": "TCJPR0001034330",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 12,
+						"startDate": "2023/05/26 00:00:00"
+					},
+					{
+						"artistName": "STRAY SHEEP CLAYMORE",
+						"artistNameKana": "ストレイシープクレイモア",
+						"packageTitle": "キミノセイ、",
+						"packageId": "TCJPR0001119213",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2023/12/25 00:00:00"
+					},
+					{
+						"artistName": "We＝MUKASHIBANASHI, STRAY SHEEP CLAYMORE & MELiSSA",
+						"artistNameKana": "ウィームカシバナシストレイシープクレイモアメリッサ",
+						"packageTitle": "GO MY WAY",
+						"packageId": "TCJPR0000772830_hires",
+						"labelCode": "43000074",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"packageTrack": 1,
+						"startDate": "2021/04/10 00:00:00"
+					},
+					{
+						"artistName": "We＝MUKASHIBANASHI, STRAY SHEEP CLAYMORE & MELiSSA",
+						"artistNameKana": "ウィームカシバナシストレイシープクレイモアメリッサ",
+						"packageTitle": "GO MY WAY",
+						"packageId": "TCJPR0000772830",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2021/04/10 00:00:00"
+					},
+					{
+						"artistName": "FROG PREACHER",
+						"artistNameKana": "フロッグプリーチャー",
+						"packageTitle": "Stray sheep",
+						"packageId": "TCJPR0000732389",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2021/01/25 00:00:00"
+					},
+					{
+						"artistName": "鳥の爪団 総統",
+						"artistNameKana": "トリノツメダンソウトウ",
+						"packageTitle": "Wake Up, Stray Sheep",
+						"packageId": "TCJPR0001635258",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2026/02/14 00:00:00"
+					},
+					{
+						"artistName": "STRAY SHEEP CLAYMORE",
+						"artistNameKana": "ストレイシープクレイモア",
+						"packageTitle": "むげんの☆Lambie",
+						"packageId": "TCJPR0001198956_hires",
+						"labelCode": "43000074",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"packageTrack": 1,
+						"startDate": "2024/07/01 00:00:00"
+					}
+				]
+			}
+		}
+	},
+	"02 YOASOBI アイドル": {
+		"data": {
+			"packageResult": {
+				"resultCode": "SM0305000",
+				"total": 12,
+				"list": [
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "アイドル",
+						"packageId": "4580789539947",
+						"labelCode": "43000011",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2023/04/12 00:00:00"
+					},
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "アイドル",
+						"packageId": "4580789539947_HD",
+						"labelCode": "43000011",
+						"mediaFormatNo": 12,
+						"samplingFreq": 96000,
+						"bitPerSample": "24",
+						"packageTrack": 1,
+						"startDate": "2023/04/12 00:00:00"
+					},
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "Idol",
+						"packageId": "4580789551345",
+						"labelCode": "43000011",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2023/05/26 00:00:00"
+					},
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "Idol",
+						"packageId": "4580789551345_HD",
+						"labelCode": "43000011",
+						"mediaFormatNo": 12,
+						"samplingFreq": 96000,
+						"bitPerSample": "24",
+						"packageTrack": 1,
+						"startDate": "2023/05/26 00:00:00"
+					},
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "アイドル",
+						"packageId": "4580789539947_LL",
+						"labelCode": "43000011",
+						"mediaFormatNo": 15,
+						"samplingFreq": 44100,
+						"bitPerSample": "16",
+						"packageTrack": 1,
+						"startDate": "2024/12/06 00:00:00"
+					},
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "Idol",
+						"packageId": "4580789551345_LL",
+						"labelCode": "43000011",
+						"mediaFormatNo": 15,
+						"samplingFreq": 44100,
+						"bitPerSample": "16",
+						"packageTrack": 1,
+						"startDate": "2024/12/06 00:00:00"
+					},
+					{
+						"artistName": "サウンドワークス",
+						"artistNameKana": "サウンドワークス",
+						"packageTitle": "アイドル「【推しの子】」より(原曲:YOASOBI)[ORIGINAL COVER]",
+						"packageId": "4549276952843_F",
+						"labelCode": "43000092",
+						"mediaFormatNo": 12,
+						"samplingFreq": 96000,
+						"bitPerSample": "24",
+						"packageTrack": 1,
+						"startDate": "2023/04/17 00:00:00"
+					},
+					{
+						"artistName": "サウンドワークス",
+						"artistNameKana": "サウンドワークス",
+						"packageTitle": "アイドル「【推しの子】」より(原曲:YOASOBI)[ORIGINAL COVER]",
+						"packageId": "4549276952843",
+						"labelCode": "43000092",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2023/04/17 00:00:00"
+					},
+					{
+						"artistName": "Studio Megaane",
+						"artistNameKana": "スタジオメガーネ",
+						"packageTitle": "アイドル[【推しの子】]より(原曲:YOASOBI) ORIGINAL COVER (8bitバージョン)",
+						"packageId": "4549276964228",
+						"labelCode": "43000092",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2023/07/06 00:00:00"
+					},
+					{
+						"artistName": "カラオケまねきねこ",
+						"artistNameKana": "カラオケマネキネコ",
+						"packageTitle": "アイドル (カラオケ) [YOASOBI]",
+						"packageId": "PA00161181-0-1",
+						"labelCode": "43000033",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 12,
+						"startDate": "2024/08/14 00:00:00"
+					},
+					{
+						"artistName": "Studio Megaane",
+						"artistNameKana": "スタジオメガーネ",
+						"packageTitle": "アイドル[【推しの子】]より(原曲:YOASOBI) ORIGINAL COVER (8bitバージョン)",
+						"packageId": "4549276964228_F",
+						"labelCode": "43000092",
+						"mediaFormatNo": 12,
+						"samplingFreq": 96000,
+						"bitPerSample": "24",
+						"packageTrack": 1,
+						"startDate": "2023/07/06 00:00:00"
+					},
+					{
+						"artistName": "水面歌風",
+						"artistNameKana": "ミナモカフウ",
+						"packageTitle": "アイドルは夜遊びできない / Idols cannot Yoasobi",
+						"packageId": "4582776665585",
+						"labelCode": "43000181",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2024/06/12 00:00:00"
+					}
+				]
+			}
+		}
+	},
+	"02 米津玄師 Lemon": {
+		"data": {
+			"packageResult": {
+				"resultCode": "SM0305000",
+				"total": 9,
+				"list": [
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "Lemon",
+						"packageId": "SRCL09749B00Z",
+						"labelCode": "43000087",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 3,
+						"startDate": "2018/03/14 00:00:00"
+					},
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "Lemon",
+						"packageId": "SRCL09749B00Z_48",
+						"labelCode": "43000100",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"packageTrack": 3,
+						"startDate": "2022/05/12 00:00:00"
+					},
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "Lemon",
+						"packageId": "SRCL09749B00Z",
+						"labelCode": "43000188",
+						"mediaFormatNo": 15,
+						"samplingFreq": 44100,
+						"bitPerSample": "16",
+						"packageTrack": 3,
+						"startDate": "2018/03/14 00:00:00"
+					},
+					{
+						"artistName": "オルゴールサウンド J-POP",
+						"artistNameKana": "オルゴールサウンドジェイポップ",
+						"packageTitle": "Lemon Originally Performed By 米津玄師 (リラックスオルゴール)",
+						"packageId": "4538182750650",
+						"labelCode": "43000011",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2018/04/25 00:00:00"
+					},
+					{
+						"artistName": "Relaxing Time Music",
+						"artistNameKana": "リラクシングタイムミュージック",
+						"packageTitle": "Lemon 米津玄師オルゴールコレクション",
+						"packageId": "NESO-033",
+						"labelCode": "43000071",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 10,
+						"startDate": "2021/06/09 00:00:00"
+					},
+					{
+						"artistName": "α波オルゴール",
+						"artistNameKana": "アルファハオルゴール",
+						"packageTitle": "Lemon・Flamingo～米津玄師コレクション",
+						"packageId": "DLOR-612",
+						"labelCode": "43000035",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 12,
+						"startDate": "2021/11/24 00:00:00"
+					},
+					{
+						"artistName": "オルゴールサウンド J-POP",
+						"artistNameKana": "オルゴールサウンドジェイポップ",
+						"packageTitle": "Lemon ~ドラマ「アンナチュラル」主題歌~ Originally Performed By 米津玄師 (オルゴール)",
+						"packageId": "4538182749746",
+						"labelCode": "43000011",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2018/04/18 00:00:00"
+					},
+					{
+						"artistName": "カラオケまねきねこ",
+						"artistNameKana": "カラオケマネキネコ",
+						"packageTitle": "Lemon(カラオケ)[米津玄師]",
+						"packageId": "PA00164418-0-1",
+						"labelCode": "43000033",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 12,
+						"startDate": "2024/09/17 00:00:00"
+					},
+					{
+						"artistName": "オルゴールミュージック",
+						"artistNameKana": "オルゴールミュージック",
+						"packageTitle": "Lemon (Cover) [ドラマ『アンナチュラル』主題歌] [オリジナル歌手：米津玄師]",
+						"packageId": "TCJPR0000905435",
+						"labelCode": "43000074",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 1,
+						"startDate": "2022/05/18 00:00:00"
+					}
+				]
+			}
+		}
+	},
+	"02 米津玄師 STRAY SHEEP": {
+		"data": {
+			"packageResult": {
+				"resultCode": "SM0305000",
+				"total": 3,
+				"list": [
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "STRAY SHEEP",
+						"packageId": "SECL02598B00Z",
+						"labelCode": "43000087",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"packageTrack": 15,
+						"startDate": "2020/08/05 00:00:00"
+					},
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "STRAY SHEEP",
+						"packageId": "SEXX02051B00Z_48",
+						"labelCode": "43000100",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"packageTrack": 15,
+						"startDate": "2020/08/05 00:00:00"
+					},
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "STRAY SHEEP",
+						"packageId": "SECL02598B00Z",
+						"labelCode": "43000188",
+						"mediaFormatNo": 15,
+						"samplingFreq": 44100,
+						"bitPerSample": "16",
+						"packageTrack": 15,
+						"startDate": "2020/08/05 00:00:00"
+					}
+				]
+			}
+		}
+	},
+	"03 Ado うっせぇわ": {
+		"data": {
+			"trackResult": {
+				"resultCode": "SM0305000",
+				"total": 54,
+				"list": [
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "うっせぇわ",
+						"packageId": "00602435205861",
+						"labelCode": "43000006",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2020/10/23 00:00:00",
+						"materialNo": 16949245,
+						"trackTitle": "うっせぇわ",
+						"packageStartDate": "2020/10/23 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "うっせぇわ",
+						"packageId": "00602438561094",
+						"labelCode": "43000006",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"startDate": "2021/07/02 00:00:00",
+						"materialNo": 18876342,
+						"trackTitle": "うっせぇわ",
+						"packageStartDate": "2021/07/02 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "うっせぇわ (Giga Remix)",
+						"packageId": "00602435737300",
+						"labelCode": "43000006",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2021/02/05 00:00:00",
+						"materialNo": 17721432,
+						"trackTitle": "うっせぇわ (Giga Remix)",
+						"packageStartDate": "2021/02/05 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "狂言",
+						"packageId": "00602445359967",
+						"labelCode": "43000006",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2022/01/26 00:00:00",
+						"materialNo": 20384591,
+						"trackTitle": "うっせぇわ",
+						"packageStartDate": "2022/01/26 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "狂言",
+						"packageId": "00602445416431",
+						"labelCode": "43000006",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"startDate": "2022/01/26 00:00:00",
+						"materialNo": 20390163,
+						"trackTitle": "うっせぇわ",
+						"packageStartDate": "2022/01/26 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "レディメイド",
+						"packageId": "00602435590158",
+						"labelCode": "43000006",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2020/12/24 00:00:00",
+						"materialNo": 17462061,
+						"trackTitle": "うっせぇわ (Piano Ver.)",
+						"packageStartDate": "2020/12/24 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "うっせぇわ (Lyric Video)",
+						"packageId": "00602435322858",
+						"labelCode": "43000006",
+						"mediaFormatNo": 11,
+						"samplingFreq": 48000,
+						"bitPerSample": null,
+						"startDate": "2020/12/02 00:00:00",
+						"materialNo": 17304236,
+						"trackTitle": "うっせぇわ (Lyric Video)",
+						"packageStartDate": "2020/12/02 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "Adoのベストアドバム",
+						"packageId": "00602478008511",
+						"labelCode": "43000006",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2025/04/09 00:00:00",
+						"materialNo": 38506857,
+						"trackTitle": "うっせぇわ",
+						"packageStartDate": "2025/04/09 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "Adoのベストアドバム",
+						"packageId": "00602478008528",
+						"labelCode": "43000006",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"startDate": "2025/04/09 00:00:00",
+						"materialNo": 38506904,
+						"trackTitle": "うっせぇわ",
+						"packageStartDate": "2025/04/09 00:00:00"
+					},
+					{
+						"artistName": "Ado",
+						"artistNameKana": "アド",
+						"packageTitle": "うっせぇわ",
+						"packageId": "00602435205861_L",
+						"labelCode": "43000006",
+						"mediaFormatNo": 15,
+						"samplingFreq": 44100,
+						"bitPerSample": "16",
+						"startDate": "2020/10/23 00:00:00",
+						"materialNo": 25593812,
+						"trackTitle": "うっせぇわ",
+						"packageStartDate": "2020/10/23 00:00:00"
+					}
+				]
+			}
+		}
+	},
+	"03 Kenshi Yonezu Lemon": {
+		"data": {
+			"trackResult": {
+				"resultCode": "SM0305000",
+				"total": 2,
+				"list": [
+					{
+						"artistName": "Flower.far",
+						"artistNameKana": "フラワーファー",
+						"packageTitle": "What if…",
+						"packageId": "RSFC-21893",
+						"labelCode": "43000071",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2026/05/08 00:00:00",
+						"materialNo": 45743411,
+						"trackTitle": "Lemon (Kenshi Yonezu 2018)",
+						"packageStartDate": "2026/05/08 00:00:00"
+					},
+					{
+						"artistName": "Flower.far",
+						"artistNameKana": "フラワーファー",
+						"packageTitle": "What if…",
+						"packageId": "RSFC-21893HR_F",
+						"labelCode": "43000071",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"startDate": "2026/05/08 00:00:00",
+						"materialNo": 45779169,
+						"trackTitle": "Lemon (Kenshi Yonezu 2018)",
+						"packageStartDate": "2026/05/08 00:00:00"
+					}
+				]
+			}
+		}
+	},
+	"03 Lemon": {
+		"data": {
+			"trackResult": {
+				"resultCode": "SM0305000",
+				"total": 6057,
+				"list": [
+					{
+						"artistName": "Lemon Session",
+						"artistNameKana": "ダミーデータ",
+						"packageTitle": "The Book of Dreams",
+						"packageId": "SYM-4580282242191",
+						"labelCode": "43000071",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2026/09/23 00:00:00",
+						"materialNo": 49046138,
+						"trackTitle": "Earthy Thoughts",
+						"packageStartDate": "2026/09/23 00:00:00"
+					},
+					{
+						"artistName": "Lemon Session",
+						"artistNameKana": "ダミーデータ",
+						"packageTitle": "The Book of Dreams",
+						"packageId": "SYM-4580282242191",
+						"labelCode": "43000071",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2026/09/23 00:00:00",
+						"materialNo": 49046141,
+						"trackTitle": "A Novel of the Day",
+						"packageStartDate": "2026/09/23 00:00:00"
+					},
+					{
+						"artistName": "Lemon Session",
+						"artistNameKana": "ダミーデータ",
+						"packageTitle": "The Book of Dreams",
+						"packageId": "SYM-4580282242191",
+						"labelCode": "43000071",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2026/09/23 00:00:00",
+						"materialNo": 49046143,
+						"trackTitle": "Cool Jazz Blues",
+						"packageStartDate": "2026/09/23 00:00:00"
+					},
+					{
+						"artistName": "Lemon Session",
+						"artistNameKana": "ダミーデータ",
+						"packageTitle": "The Book of Dreams",
+						"packageId": "SYM-4580282242191",
+						"labelCode": "43000071",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2026/09/23 00:00:00",
+						"materialNo": 49046145,
+						"trackTitle": "Stories For the Morning After",
+						"packageStartDate": "2026/09/23 00:00:00"
+					},
+					{
+						"artistName": "Lemon Session",
+						"artistNameKana": "ダミーデータ",
+						"packageTitle": "The Book of Dreams",
+						"packageId": "SYM-4580282242191",
+						"labelCode": "43000071",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2026/09/23 00:00:00",
+						"materialNo": 49046148,
+						"trackTitle": "A Chapter for the Mug",
+						"packageStartDate": "2026/09/23 00:00:00"
+					},
+					{
+						"artistName": "Lemon Session",
+						"artistNameKana": "ダミーデータ",
+						"packageTitle": "The Book of Dreams",
+						"packageId": "SYM-4580282242191",
+						"labelCode": "43000071",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2026/09/23 00:00:00",
+						"materialNo": 49046151,
+						"trackTitle": "A Book is the Wind",
+						"packageStartDate": "2026/09/23 00:00:00"
+					},
+					{
+						"artistName": "Lemon Session",
+						"artistNameKana": "ダミーデータ",
+						"packageTitle": "The Book of Dreams",
+						"packageId": "SYM-4580282242191",
+						"labelCode": "43000071",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2026/09/23 00:00:00",
+						"materialNo": 49046152,
+						"trackTitle": "My Happy Place",
+						"packageStartDate": "2026/09/23 00:00:00"
+					},
+					{
+						"artistName": "Lemon Session",
+						"artistNameKana": "ダミーデータ",
+						"packageTitle": "The Book of Dreams",
+						"packageId": "SYM-4580282242191",
+						"labelCode": "43000071",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2026/09/23 00:00:00",
+						"materialNo": 49046154,
+						"trackTitle": "Spend the Day Reading",
+						"packageStartDate": "2026/09/23 00:00:00"
+					},
+					{
+						"artistName": "Lemon Session",
+						"artistNameKana": "ダミーデータ",
+						"packageTitle": "The Book of Dreams",
+						"packageId": "SYM-4580282242191",
+						"labelCode": "43000071",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2026/09/23 00:00:00",
+						"materialNo": 49046158,
+						"trackTitle": "Jazzing Down the Years",
+						"packageStartDate": "2026/09/23 00:00:00"
+					},
+					{
+						"artistName": "Lemon Session",
+						"artistNameKana": "ダミーデータ",
+						"packageTitle": "The Book of Dreams",
+						"packageId": "SYM-4580282242191",
+						"labelCode": "43000071",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2026/09/23 00:00:00",
+						"materialNo": 49046159,
+						"trackTitle": "Read to Your Heart's Content",
+						"packageStartDate": "2026/09/23 00:00:00"
+					}
+				]
+			}
+		}
+	},
+	"03 Nobody Qwxz Nonexistent Song Zzyzx": {
+		"data": {
+			"trackResult": {
+				"resultCode": "EM0305200",
+				"total": 0,
+				"list": []
+			}
+		}
+	},
+	"03 Nonexistent Song Zzyzx": {
+		"data": {
+			"trackResult": {
+				"resultCode": "EM0305200",
+				"total": 0,
+				"list": []
+			}
+		}
+	},
+	"03 YOASOBI アイドル": {
+		"data": {
+			"trackResult": {
+				"resultCode": "SM0305000",
+				"total": 87,
+				"list": [
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "アイドル",
+						"packageId": "4580789539947",
+						"labelCode": "43000011",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2023/04/12 00:00:00",
+						"materialNo": 23673125,
+						"trackTitle": "アイドル",
+						"packageStartDate": "2023/04/12 00:00:00"
+					},
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "アイドル",
+						"packageId": "4580789539947_HD",
+						"labelCode": "43000011",
+						"mediaFormatNo": 12,
+						"samplingFreq": 96000,
+						"bitPerSample": "24",
+						"startDate": "2023/04/12 00:00:00",
+						"materialNo": 23673089,
+						"trackTitle": "アイドル",
+						"packageStartDate": "2023/04/12 00:00:00"
+					},
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "Idol",
+						"packageId": "4580789551345",
+						"labelCode": "43000011",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2023/05/26 00:00:00",
+						"materialNo": 23998834,
+						"trackTitle": "Idol",
+						"packageStartDate": "2023/05/26 00:00:00"
+					},
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "Idol",
+						"packageId": "4580789551345_HD",
+						"labelCode": "43000011",
+						"mediaFormatNo": 12,
+						"samplingFreq": 96000,
+						"bitPerSample": "24",
+						"startDate": "2023/05/26 00:00:00",
+						"materialNo": 23997949,
+						"trackTitle": "Idol",
+						"packageStartDate": "2023/05/26 00:00:00"
+					},
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "THE BOOK 3",
+						"packageId": "4580789583926",
+						"labelCode": "43000011",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2023/10/04 00:00:00",
+						"materialNo": 24857587,
+						"trackTitle": "アイドル",
+						"packageStartDate": "2023/10/04 00:00:00"
+					},
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "THE BOOK 3",
+						"packageId": "4580789583926_HD",
+						"labelCode": "43000011",
+						"mediaFormatNo": 12,
+						"samplingFreq": 96000,
+						"bitPerSample": "24",
+						"startDate": "2023/10/04 00:00:00",
+						"materialNo": 24857510,
+						"trackTitle": "アイドル",
+						"packageStartDate": "2023/10/04 00:00:00"
+					},
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "アイドル",
+						"packageId": "4580789539947_LL",
+						"labelCode": "43000011",
+						"mediaFormatNo": 15,
+						"samplingFreq": 44100,
+						"bitPerSample": "16",
+						"startDate": "2024/12/06 00:00:00",
+						"materialNo": 37010244,
+						"trackTitle": "アイドル",
+						"packageStartDate": "2024/12/06 00:00:00"
+					},
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "E-SIDE 3",
+						"packageId": "198391607813",
+						"labelCode": "43000011",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2024/04/12 00:00:00",
+						"materialNo": 31152001,
+						"trackTitle": "Idol",
+						"packageStartDate": "2024/04/12 00:00:00"
+					},
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "E-SIDE 3",
+						"packageId": "198391607813_HD",
+						"labelCode": "43000011",
+						"mediaFormatNo": 12,
+						"samplingFreq": 96000,
+						"bitPerSample": "24",
+						"startDate": "2024/04/12 00:00:00",
+						"materialNo": 31151858,
+						"trackTitle": "Idol",
+						"packageStartDate": "2024/04/12 00:00:00"
+					},
+					{
+						"artistName": "YOASOBI",
+						"artistNameKana": "ヨアソビ",
+						"packageTitle": "Idol",
+						"packageId": "4580789551345_LL",
+						"labelCode": "43000011",
+						"mediaFormatNo": 15,
+						"samplingFreq": 44100,
+						"bitPerSample": "16",
+						"startDate": "2024/12/06 00:00:00",
+						"materialNo": 37010255,
+						"trackTitle": "Idol",
+						"packageStartDate": "2024/12/06 00:00:00"
+					}
+				]
+			}
+		}
+	},
+	"03 米津玄師 Lemon": {
+		"data": {
+			"trackResult": {
+				"resultCode": "SM0305000",
+				"total": 44,
+				"list": [
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "Lemon",
+						"packageId": "SRCL09749B00Z",
+						"labelCode": "43000087",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2018/03/14 00:00:00",
+						"materialNo": 11467222,
+						"trackTitle": "Lemon",
+						"packageStartDate": "2018/03/14 00:00:00"
+					},
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "STRAY SHEEP",
+						"packageId": "SECL02598B00Z",
+						"labelCode": "43000087",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2020/08/05 00:00:00",
+						"materialNo": 16545209,
+						"trackTitle": "Lemon",
+						"packageStartDate": "2020/08/05 00:00:00"
+					},
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "Lemon",
+						"packageId": "SRCL09749B00Z_48",
+						"labelCode": "43000100",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"startDate": "2022/05/12 00:00:00",
+						"materialNo": 21286729,
+						"trackTitle": "Lemon",
+						"packageStartDate": "2022/05/12 00:00:00"
+					},
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "STRAY SHEEP",
+						"packageId": "SEXX02051B00Z_48",
+						"labelCode": "43000100",
+						"mediaFormatNo": 12,
+						"samplingFreq": 48000,
+						"bitPerSample": "24",
+						"startDate": "2020/08/05 00:00:00",
+						"materialNo": 16546072,
+						"trackTitle": "Lemon",
+						"packageStartDate": "2020/08/05 00:00:00"
+					},
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "Lemon",
+						"packageId": "SRCL09749B00Z",
+						"labelCode": "43000188",
+						"mediaFormatNo": 15,
+						"samplingFreq": 44100,
+						"bitPerSample": "16",
+						"startDate": "2018/03/14 00:00:00",
+						"materialNo": 30195061,
+						"trackTitle": "Lemon",
+						"packageStartDate": "2018/03/14 00:00:00"
+					},
+					{
+						"artistName": "オルゴールサウンド J-POP",
+						"artistNameKana": "オルゴールサウンドジェイポップ",
+						"packageTitle": "Lemon Originally Performed By 米津玄師 (リラックスオルゴール)",
+						"packageId": "4538182750650",
+						"labelCode": "43000011",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2018/04/25 00:00:00",
+						"materialNo": 11719468,
+						"trackTitle": "Lemon Originally Performed By 米津玄師 (リラックスオルゴール)",
+						"packageStartDate": "2018/04/25 00:00:00"
+					},
+					{
+						"artistName": "米津玄師",
+						"artistNameKana": "ヨネヅケンシ",
+						"packageTitle": "STRAY SHEEP",
+						"packageId": "SECL02598B00Z",
+						"labelCode": "43000188",
+						"mediaFormatNo": 15,
+						"samplingFreq": 44100,
+						"bitPerSample": "16",
+						"startDate": "2020/08/05 00:00:00",
+						"materialNo": 30327857,
+						"trackTitle": "Lemon",
+						"packageStartDate": "2020/08/05 00:00:00"
+					},
+					{
+						"artistName": "西脇睦宏",
+						"artistNameKana": "ニシワキムツヒロ",
+						"packageTitle": "2018 J-POP BEST HITS Vol.11(オルゴールミュージック)",
+						"packageId": "4538182760765",
+						"labelCode": "43000011",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2018/06/27 00:00:00",
+						"materialNo": 12114706,
+						"trackTitle": "Lemon Originally Performed By 米津玄師(オルゴール)",
+						"packageStartDate": "2018/06/27 00:00:00"
+					},
+					{
+						"artistName": "オルゴールサウンド J-POP",
+						"artistNameKana": "オルゴールサウンドジェイポップ",
+						"packageTitle": "ハイ・グレード オルゴール作品集 米津玄師",
+						"packageId": "4538182754481",
+						"labelCode": "43000011",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2018/05/16 00:00:00",
+						"materialNo": 11865151,
+						"trackTitle": "Lemon Originally Performed By 米津玄師 (オルゴール)",
+						"packageStartDate": "2018/05/16 00:00:00"
+					},
+					{
+						"artistName": "オルゴールサウンド J-POP",
+						"artistNameKana": "オルゴールサウンドジェイポップ",
+						"packageTitle": "Lemon ~ドラマ「アンナチュラル」主題歌~ Originally Performed By 米津玄師 (オルゴール)",
+						"packageId": "4538182749746",
+						"labelCode": "43000011",
+						"mediaFormatNo": 10,
+						"samplingFreq": 44100,
+						"bitPerSample": null,
+						"startDate": "2018/04/18 00:00:00",
+						"materialNo": 11689353,
+						"trackTitle": "Lemon ~ドラマ「アンナチュラル」主題歌~ Originally Performed By 米津玄師 (オルゴール)",
+						"packageStartDate": "2018/04/18 00:00:00"
+					}
+				]
+			}
+		}
+	}
+}
