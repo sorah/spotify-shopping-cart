@@ -148,7 +148,7 @@ type CompanionStatus = {
 	libraryRevision: string; // changes when the index changes; key client caches on it
 	capabilities: string[]; // "match", "ids.isrc", "ids.itunes", "ids.mora", "store-metadata"
 	sources: {
-		id: "itunes" | "rip";
+		id: string; // the source id from config.json; display `label`
 		label: string;
 		state: "ready" | "indexing" | "error";
 		entries: number;
@@ -193,13 +193,13 @@ type MatchResult = {
 };
 
 type LocalMatch = {
-	source: "itunes" | "rip";
-	id: string; // opaque: iTunes Persistent ID or a hash of the rip path
+	source: string; // a sources[].id from /v1/status
+	id: string; // opaque: iTunes Persistent ID or a hash of the path within a directory source
 	title: string;
 	artists: string[];
 	album: string | null;
 	durationMs: number | null;
-	ownership: "purchased" | "matched" | "imported" | "rip" | "apple-music";
+	ownership: "purchased" | "matched" | "imported" | "flat" | "apple-music"; // "flat": a file from a directory source
 	format: string;
 	cloudOnly: boolean;
 	location: string; // display label only
@@ -226,6 +226,7 @@ type LocalMatch = {
 | Status | `code` | Client behaviour |
 |---|---|---|
 | network failure | – | quiet "companion not running" state |
+| 400 | `bad_request` | client bug; malformed JSON |
 | 401 | `unpaired` | ask for the token again |
 | 403 | `origin_not_allowed` | configuration error |
 | 409 | `protocol_mismatch` | ask the user to update |

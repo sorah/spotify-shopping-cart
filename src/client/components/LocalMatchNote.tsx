@@ -21,7 +21,7 @@ const OWNERSHIP_LABELS: Record<LocalMatch["ownership"], string> = {
 	purchased: "purchased",
 	matched: "iTunes Match",
 	imported: "imported",
-	rip: "rip",
+	flat: "folder file",
 	"apple-music": "Apple Music",
 };
 

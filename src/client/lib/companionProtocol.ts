@@ -5,6 +5,7 @@ export const SUPPORTED_PROTOCOLS: readonly number[] = [1];
 export const MAX_MATCH_TRACKS = 500;
 
 export type CompanionSource = {
+	// Configured on the companion, so display `label` instead.
 	id: string;
 	label: string;
 	state: "ready" | "indexing" | "error";
@@ -49,7 +50,8 @@ export type LocalMatch = {
 	artists: string[];
 	album: string | null;
 	durationMs: number | null;
-	ownership: "purchased" | "matched" | "imported" | "rip" | "apple-music";
+	// "flat" is a file from a directory source.
+	ownership: "purchased" | "matched" | "imported" | "flat" | "apple-music";
 	format: string;
 	cloudOnly: boolean;
 	// A display label, not a usable path.
@@ -91,6 +93,7 @@ export type CompanionErrorCode =
 	| "origin_not_allowed"
 	| "protocol_mismatch"
 	| "too_many_tracks"
+	| "bad_request"
 	| "indexing";
 
 export type CompanionErrorBody = {
