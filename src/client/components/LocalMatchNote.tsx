@@ -1,6 +1,6 @@
 import type { PlaylistTrack } from "../../shared/types.ts";
 import { dismissLocalMatch } from "../hooks/useCompanion.ts";
-import { markTracksPurchased } from "../hooks/usePurchased.ts";
+import { markTracksPurchased, unmarkTracksPurchased } from "../hooks/usePurchased.ts";
 import { type LocalMatchView, moraPackageUrl } from "../lib/companionMatch.ts";
 import type { LocalMatch, MatchedBy } from "../lib/companionProtocol.ts";
 import { formatDurationDifference, joinArtists } from "../lib/format.ts";
@@ -41,11 +41,25 @@ function describeMatch(match: LocalMatch, matchedBy: MatchedBy | null): string {
 
 export function LocalMatchNote({ track, view, canLinkMora }: Props) {
 	if (view.kind === "owned") {
+		const { match } = view;
 		return (
-			<span className="local-match">
-				<span className="local-badge" data-kind="owned" title={view.match?.location}>
+			<span className="local-match" data-kind="owned">
+				<span className="local-badge" data-kind="owned" title={match?.location}>
 					In your library
 				</span>
+				{match && (
+					<button
+						type="button"
+						className="link-button local-match-dismiss"
+						aria-label={`Dismiss the library match for ${track.name}`}
+						onClick={() => {
+							dismissLocalMatch(track.uri, match.id);
+							unmarkTracksPurchased([track.uri]);
+						}}
+					>
+						Not this one
+					</button>
+				)}
 			</span>
 		);
 	}

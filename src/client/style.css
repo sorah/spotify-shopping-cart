@@ -945,6 +945,18 @@ p {
 	}
 }
 
+.local-match[data-kind="owned"] {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 8px;
+}
+
+.local-match-dismiss {
+	color: var(--color-muted);
+	font-size: 12px;
+}
+
 .local-badge {
 	display: inline-block;
 	padding: 1px 8px;

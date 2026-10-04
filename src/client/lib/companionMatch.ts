@@ -29,8 +29,6 @@ export type MatchCache = {
 export type CheckResult = {
 	libraryRevision: string;
 	results: ReadonlyMap<string, MatchResult>;
-	// Results the companion returned during this check, as opposed to ones reused from the cache.
-	fresh: MatchResult[];
 };
 
 export type CheckClient = {
@@ -153,7 +151,7 @@ export async function checkLibrary(
 		const fresh = await matchAll(client, protocol, status.libraryRevision, pending);
 		if (fresh === null) continue;
 		for (const result of fresh) results.set(result.key, result);
-		return { libraryRevision: status.libraryRevision, results, fresh };
+		return { libraryRevision: status.libraryRevision, results };
 	}
 	throw new Error("the companion's library kept changing during the check");
 }
@@ -173,10 +171,23 @@ export function dismissMatch(cache: MatchCache, uri: string, matchId: string): M
 	return { ...cache, dismissed: { ...cache.dismissed, [uri]: matchId } };
 }
 
-// Owned tracks found by this check that aren't marked yet; marks made earlier, or undone since, are left alone.
-export function newlyOwnedUris(fresh: MatchResult[], items: PlaylistTrack[], purchased: PurchasedMap): string[] {
-	const owned = new Set(fresh.filter((result) => result.verdict === "owned").map((result) => result.key));
-	const uris = items.filter((track) => owned.has(track.uri) && !isPurchased(purchased, track)).map((track) => track.uri);
+function isDismissed(cache: MatchCache, uri: string, match: LocalMatch | undefined): boolean {
+	return match !== undefined && cache.dismissed[uri] === match.id;
+}
+
+// Owned tracks that aren't marked yet, leaving out matches the user dismissed.
+export function unmarkedOwnedUris(cache: MatchCache, items: PlaylistTrack[], purchased: PurchasedMap): string[] {
+	const uris = items
+		.filter((track) => {
+			const result = cache.results[track.uri];
+			return (
+				!track.isLocal &&
+				result?.verdict === "owned" &&
+				!isDismissed(cache, track.uri, result.matches[0]) &&
+				!isPurchased(purchased, track)
+			);
+		})
+		.map((track) => track.uri);
 	return [...new Set(uris)];
 }
 
@@ -189,8 +200,9 @@ export function localMatchView(
 	const result = cache.results[track.uri];
 	if (!result) return null;
 	const [match] = result.matches;
+	if (isDismissed(cache, track.uri, match)) return null;
 	if (result.verdict === "owned") return { kind: "owned", match };
-	if (result.verdict === "probable" && match && !isTrackPurchased && cache.dismissed[track.uri] !== match.id) {
+	if (result.verdict === "probable" && match && !isTrackPurchased) {
 		return { kind: "review", match, matchedBy: result.matchedBy };
 	}
 	return null;

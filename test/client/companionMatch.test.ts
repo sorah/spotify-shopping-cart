@@ -7,11 +7,11 @@ import {
 	type MatchCache,
 	moraPackageUrl,
 	NoCommonProtocolError,
-	newlyOwnedUris,
 	parseMatchCache,
 	parsePairing,
 	summarizeMatches,
 	toCompanionTracks,
+	unmarkedOwnedUris,
 	updateMatchCache,
 } from "../../src/client/lib/companionMatch.ts";
 import {
@@ -161,7 +161,6 @@ describe("checkLibrary", () => {
 		]);
 		expect(check.libraryRevision).toBe("r1");
 		expect(check.results.size).toBe(1001);
-		expect(check.fresh).toHaveLength(1001);
 	});
 
 	test("asks only about tracks without a cached result at the same revision", async () => {
@@ -174,7 +173,7 @@ describe("checkLibrary", () => {
 		const check = await checkLibrary(companionTracks(2), cache, client);
 		expect(calls.match.map((call) => call.keys)).toEqual([["spotify:track:1"]]);
 		expect(check.results.get("spotify:track:0")?.verdict).toBe("owned");
-		expect(check.fresh.map((r) => r.key)).toEqual(["spotify:track:1"]);
+		expect(check.results.get("spotify:track:1")?.verdict).toBe("absent");
 	});
 
 	test("ignores the cache from another library revision", async () => {
@@ -228,7 +227,7 @@ describe("updateMatchCache", () => {
 			dismissed: { "spotify:track:a": "m1", "spotify:track:gone": "m2" },
 		};
 		const a = result("spotify:track:a", "probable", ["m1"]);
-		const cache = updateMatchCache(previous, { libraryRevision: "r1", results: new Map([[a.key, a]]), fresh: [] });
+		const cache = updateMatchCache(previous, { libraryRevision: "r1", results: new Map([[a.key, a]]) });
 		expect(cache).toEqual({
 			libraryRevision: "r1",
 			results: { "spotify:track:a": a },
@@ -237,20 +236,31 @@ describe("updateMatchCache", () => {
 	});
 });
 
-describe("newlyOwnedUris", () => {
-	test("returns owned tracks that aren't marked yet, once each", () => {
+describe("unmarkedOwnedUris", () => {
+	test("returns owned tracks that aren't marked or dismissed, once each", () => {
+		const cache: MatchCache = {
+			libraryRevision: "r1",
+			results: {
+				"spotify:track:a": result("spotify:track:a", "owned", ["m1"]),
+				"spotify:track:b": result("spotify:track:b", "owned", ["m2"]),
+				"spotify:track:c": result("spotify:track:c", "probable", ["m3"]),
+				"spotify:track:d": result("spotify:track:d", "owned", ["m4"]),
+				"spotify:track:e": result("spotify:track:e", "owned", ["m6", "m5"]),
+			},
+			dismissed: { "spotify:track:d": "m4", "spotify:track:e": "m5" },
+		};
 		const items = [
 			track("spotify:track:a"),
 			track("spotify:track:a", { position: 1 }),
 			track("spotify:track:b"),
 			track("spotify:track:c"),
+			track("spotify:track:d"),
+			track("spotify:track:e"),
 		];
-		const fresh = [
-			result("spotify:track:a", "owned", ["m1"]),
-			result("spotify:track:b", "owned", ["m2"]),
-			result("spotify:track:c", "probable", ["m3"]),
-		];
-		expect(newlyOwnedUris(fresh, items, { "spotify:track:b": "2026-10-02T00:00:00Z" })).toEqual(["spotify:track:a"]);
+		expect(unmarkedOwnedUris(cache, items, { "spotify:track:b": "2026-10-02T00:00:00Z" })).toEqual([
+			"spotify:track:a",
+			"spotify:track:e",
+		]);
 	});
 });
 
@@ -267,11 +277,13 @@ describe("localMatchView", () => {
 		dismissed: { "spotify:track:dismissed": "m4", "spotify:track:redismissed": "m5" },
 	};
 
-	test("shows owned tracks whether or not they are marked", () => {
+	test("shows owned tracks whether or not they are marked, until dismissed", () => {
 		expect(localMatchView(cache, track("spotify:track:owned"), true)).toMatchObject({
 			kind: "owned",
 			match: { id: "m1" },
 		});
+		const dismissed = dismissMatch(cache, "spotify:track:owned", "m1");
+		expect(localMatchView(dismissed, track("spotify:track:owned"), false)).toBeNull();
 	});
 
 	test("offers the best probable match for review until it is marked or dismissed", () => {

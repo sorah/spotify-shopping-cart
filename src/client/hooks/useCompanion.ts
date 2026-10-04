@@ -9,10 +9,10 @@ import {
 	checkLibrary,
 	dismissMatch,
 	type MatchCache,
-	newlyOwnedUris,
 	parseMatchCache,
 	parsePairing,
 	toCompanionTracks,
+	unmarkedOwnedUris,
 	updateMatchCache,
 } from "../lib/companionMatch.ts";
 import { type CompanionStatus, isIndexing } from "../lib/companionProtocol.ts";
@@ -91,10 +91,11 @@ export function useCompanionMatches(items: PlaylistTrack[] | undefined) {
 				status: () => fetchCompanionStatus(token),
 				match: (protocol, tracks) => postCompanionMatch(token, protocol, tracks),
 			});
+			const updated = updateMatchCache(matchCacheStore.get(), result);
+			matchCacheStore.set(updated);
 			// Owning one song says nothing about the rest of its album, so only matched tracks are marked.
-			const owned = newlyOwnedUris(result.fresh, items, getPurchased());
+			const owned = unmarkedOwnedUris(updated, items, getPurchased());
 			if (owned.length > 0) markTracksPurchased(owned);
-			matchCacheStore.set(updateMatchCache(matchCacheStore.get(), result));
 			setMarkedCount(owned.length);
 		} catch (error) {
 			console.error(error);
