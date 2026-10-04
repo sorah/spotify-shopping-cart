@@ -24,7 +24,7 @@ A single Worker serves both the SPA assets and the dynamic routes. There is no d
 
 | Path | Role |
 |---|---|
-| `cloudflare.config.ts` | `cf` CLI config: worker entrypoint, secrets, assets routing, observability |
+| `cloudflare.config.ts` | `cf` CLI config: worker entrypoint, custom domain, secrets, assets routing, observability |
 | `vite.config.ts` | `react()` + `cloudflare()` plugins; no server settings (trustless injects them) |
 | `index.html`, `src/client/` | React SPA |
 | `src/worker/` | Hono app (`index.ts` is the entrypoint, `export default app`) |

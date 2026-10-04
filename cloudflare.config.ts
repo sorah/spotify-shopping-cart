@@ -7,6 +7,7 @@ export default defineConfig({
 		compatibilityDate: "2026-10-01",
 		entrypoint,
 		observability: { enabled: true },
+		domains: ["spotify-shopping-cart.nkmi.me"],
 		assets: {
 			notFoundHandling: "single-page-application",
 			runWorkerFirst: ["/api/*", "/auth/*", "/mora/*"],
